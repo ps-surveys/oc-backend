@@ -1,0 +1,20 @@
+import { Router } from 'express';
+// import { insert, login } from '../controllers/index';
+// import { deleteUsers } from '../controllers/users/delete';
+// import { byId } from '../controllers/common/by-id';
+// import { listPay } from '../controllers/users/list-pay';
+// import { updatePay } from '../controllers/users/update-pay';
+import { listAcsCompany, acsCompanyById } from '../controllers/acsCompany/list';
+import { insertAcsCompany, addLogoAcsCompany } from '../controllers/acsCompany/insert';
+import { deleteCompany } from '../controllers/acsCompany/delete';
+import { updateCompany } from '../controllers/acsCompany/update';
+
+const company: Router = Router();
+company.post('/file/:nit', addLogoAcsCompany);
+company.post('/', insertAcsCompany);
+company.put('/', updateCompany);
+company.delete('/:id', deleteCompany);
+company.get('/', listAcsCompany);
+company.get('/:id', acsCompanyById);
+//company.get('/email/:email', acsUserByEmail);
+export default company;
