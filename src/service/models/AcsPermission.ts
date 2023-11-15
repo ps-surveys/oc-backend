@@ -1,4 +1,4 @@
-export const TYPE_PERMISSION = "acs_permission";
+export const TYPE_PERMISSION = "permission";
 
 export class AcsPermission {
     idPermis: number;

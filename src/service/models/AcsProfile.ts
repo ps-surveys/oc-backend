@@ -1,4 +1,4 @@
-export const TYPE_PROFILE = "acs_profile";
+export const TYPE_PROFILE = "role";
 
 export class AcsProfile {
     idProf:number;

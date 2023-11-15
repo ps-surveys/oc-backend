@@ -1,4 +1,4 @@
-export const TYPE_PERMIS_ROL = "acs_permis_rol";
+export const TYPE_PERMIS_ROL = "permis_role";
 
 export class AcsPermisRol {
     idProf: number;

@@ -15,7 +15,7 @@ class AcsUserDao {
             rs.map((item: any) => {
                 obj = new AcsUser()
                 obj.idUser = item.id_user
-                obj.idProf = item.id_prof
+                obj.idProf = item.id_role
                 obj.idComp = item.id_comp
                 obj.identUser = item.ident_user
                 obj.nameUser = item.name_user
@@ -42,7 +42,7 @@ class AcsUserDao {
             list = rs.map((item: any) => {
                 const obj: AcsUser = new AcsUser()
                 obj.idUser = item.id_user
-                obj.idProf = item.id_prof
+                obj.idProf = item.id_role
                 obj.idComp = item.id_comp
                 obj.identUser = item.ident_user
                 obj.nameUser = item.name_user
@@ -70,7 +70,7 @@ class AcsUserDao {
             rs.map((item: any) => {
                 obj = new AcsUser()
                 obj.idUser = item.id_user
-                obj.idProf = item.id_prof
+                obj.idProf = item.id_role
                 obj.idComp = item.id_comp
                 obj.identUser = item.ident_user
                 obj.nameUser = item.name_user
@@ -97,7 +97,7 @@ class AcsUserDao {
             rs.map((item: any) => {
                 obj = new AcsUser()
                 obj.idUser = item.id_user
-                obj.idProf = item.id_prof
+                obj.idProf = item.id_role
                 obj.idComp = item.id_comp
                 obj.identUser = item.ident_user
                 obj.nameUser = item.name_user
@@ -124,7 +124,7 @@ class AcsUserDao {
             list = rs.map((item: any) => {
                 const obj: AcsUser = new AcsUser()
                 obj.idUser = item.id_user
-                obj.idProf = item.id_prof
+                obj.idProf = item.id_role
                 obj.idComp = item.id_comp
                 obj.identUser = item.ident_user
                 obj.nameUser = item.name_user

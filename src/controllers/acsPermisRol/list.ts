@@ -18,7 +18,7 @@ export function listAcsPermissionsRol(req, res: Response, next) {
 }
 
 export function acsPermissionsRolByIdProf(req, res: Response, next) {
-    acsPermisRolDao.permissionsRolByIdProf(req.params.id_prof)
+    acsPermisRolDao.permissionsRolByIdProf(req.params.id_role)
         .then(data => {
             res.send(new ResponsePermisRol(true, data, null));
         }, err => {
@@ -27,7 +27,7 @@ export function acsPermissionsRolByIdProf(req, res: Response, next) {
 }
 
 export function acsPermissionsRolByIdProfPermis(req, res: Response, next) {
-    acsPermisRolDao.permissionsRolByIdProfPermis(req.params.id_prof, req.params.id_permis)
+    acsPermisRolDao.permissionsRolByIdProfPermis(req.params.id_role, req.params.id_permis)
         .then(data => {
             res.send(new ResponsePermisRol(true, data, null));
         }, err => {

@@ -11,8 +11,8 @@ class AcsProfileDao {
             var list = []
             list = rs.map((item: any) => {
                 const obj: AcsProfile = new AcsProfile()
-                obj.idProf = item.id_prof
-                obj.nameProf = item.name_prof
+                obj.idProf = item.id_role
+                obj.nameProf = item.name_role
                 return obj
             })
         } catch (err) {
@@ -29,8 +29,8 @@ class AcsProfileDao {
             var obj: AcsProfile = null
             rs.map((item: any) => {
                 obj = new AcsProfile()
-                obj.idProf = item.id_prof
-                obj.nameProf = item.name_prof
+                obj.idProf = item.id_role
+                obj.nameProf = item.name_role
             })
         } catch (err) {
             console.log(err)

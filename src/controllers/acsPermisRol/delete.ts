@@ -13,8 +13,8 @@ export function deletePermisRol(req: Request, res: Response, next) {
 }
 
 export function deletePermisRolByIdProf(req: Request, res: Response, next) {
-    const id_prof = req.params.id_prof;
-    acsPermisRolDao.deleteByIdProf(parseInt(id_prof))
+    const id_role = req.params.id_role;
+    acsPermisRolDao.deleteByIdProf(parseInt(id_role))
         .then(data => {
             res.send(new ResponsePermisRol(true, data, null));
         }, err => {

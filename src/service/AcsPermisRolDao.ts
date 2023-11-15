@@ -11,9 +11,9 @@ class AcsPermisRolDao {
             var list = []
             list = rs.map((item: any) => {
                 const obj: AcsPermisRol = new AcsPermisRol()
-                obj.idProf = item.id_prof
+                obj.idProf = item.id_role
                 obj.idPermis = item.id_permis
-                obj.idPermisRol = item.id_permis_rol
+                obj.idPermisRol = item.id_permis_role
                 return obj
             })
         } catch (err) {
@@ -43,9 +43,9 @@ class AcsPermisRolDao {
             var obj: AcsPermisRol = null
             rs.map((item: any) => {
                 obj = new AcsPermisRol()
-                obj.idProf = item.id_prof
+                obj.idProf = item.id_role
                 obj.idPermis = item.id_permis
-                obj.idPermisRol = item.id_permis_rol
+                obj.idPermisRol = item.id_permis_role
             })
         } catch (err) {
             console.log(err)
