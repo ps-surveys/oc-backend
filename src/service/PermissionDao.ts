@@ -1,6 +1,6 @@
 import pool from './database/database'
 import { Query } from './database/query'
-import { AcsPermission } from './models/AcsPermission'
+import { AcsPermission } from './models/Permission'
 
 class AcsPermissionDao {
 

@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { listAcsPermissions } from '../controllers/acsPermission/list';
-import { insertAcsPermission } from '../controllers/acsPermission/insert';
-import { deletePermission } from '../controllers/acsPermission/delete';
-import { updatePermission } from '../controllers/acsPermission/update';
+import { listAcsPermissions } from '../controllers/Permission/list';
+import { insertAcsPermission } from '../controllers/Permission/insert';
+import { deletePermission } from '../controllers/Permission/delete';
+import { updatePermission } from '../controllers/Permission/update';
 
 const permission: Router = Router();
 permission.post('/', insertAcsPermission);

@@ -1,6 +1,6 @@
 import pool from './database/database'
 import { Query } from './database/query'
-import { AcsUser } from './models/AcsUser'
+import { AcsUser } from './models/User'
 var md5 = require('md5');
 
 class AcsUserDao {

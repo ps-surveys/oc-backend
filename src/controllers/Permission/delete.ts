@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { ResponsePermission } from './list';
-import acsPermissionDao from "../../service/AcsPermissionDao";
+import acsPermissionDao from "../../service/PermissionDao";
 
 export function deletePermission(req: Request, res: Response, next) {
     const id = req.params.id;

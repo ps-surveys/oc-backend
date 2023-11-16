@@ -1,6 +1,6 @@
 import { ResponseBody } from "../response-body";
 import { Response } from "express";
-import acsPermisRolDao from "../../service/AcsPermisRolDao";
+import acsPermisRolDao from "../../service/PermisRoleDao";
 
 export class ResponsePermisRol extends ResponseBody {
     constructor(success: boolean, public data, err: string) {

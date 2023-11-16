@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { ResponsePermisRol } from './list';
-import acsPermisRolDao from "../../service/AcsPermisRolDao";
+import acsPermisRolDao from "../../service/PermisRoleDao";
 
 export function deletePermisRol(req: Request, res: Response, next) {
     const id = req.params.id;

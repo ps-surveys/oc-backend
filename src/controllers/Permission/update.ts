@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { ResponsePermission } from './list';
-import { AcsPermission } from '../../service/models/AcsPermission';
-import acsPermissionDao from "../../service/AcsPermissionDao";
+import { AcsPermission } from '../../service/models/Permission';
+import acsPermissionDao from "../../service/PermissionDao";
 
 export function updatePermission(req, res: Response, next) {
     const per: AcsPermission = req.body;

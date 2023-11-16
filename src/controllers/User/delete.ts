@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { ResponseUser } from "./list";
-import acsUserDao from "../../service/AcsUserDao";
+import acsUserDao from "../../service/UserDao";
 
 export function deleteUser(req: Request, res: Response, next) {
     const id = req.params.id;

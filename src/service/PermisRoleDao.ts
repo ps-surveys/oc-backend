@@ -1,6 +1,6 @@
 import pool from './database/database'
 import { Query } from './database/query'
-import { AcsPermisRol } from './models/AcsPermisRol'
+import { AcsPermisRol } from './models/PermisRole'
 
 class AcsPermisRolDao {
 

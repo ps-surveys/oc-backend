@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { listAcsProfile } from '../controllers/acsProfile/list';
-import { insertAcsProfile } from '../controllers/acsProfile/insert';
-import { deleteProfile } from '../controllers/acsProfile/delete';
-import { updateProfile } from '../controllers/acsProfile/update';
+import { listAcsProfile } from '../controllers/Profile/list';
+import { insertAcsProfile } from '../controllers/Profile/insert';
+import { deleteProfile } from '../controllers/Profile/delete';
+import { updateProfile } from '../controllers/Profile/update';
 
 const profile: Router = Router();
 profile.post('/', insertAcsProfile);

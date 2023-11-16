@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { listAcsUsers, acsUserByEmail, acsUsersByIdComp, acsUserById } from '../controllers/acsUser/list';
-import { insertAcsUser } from '../controllers/acsUser/insert';
-import { deleteUser } from '../controllers/acsUser/delete';
-import { updateUser } from '../controllers/acsUser/update';
-import { login } from '../controllers/acsUser/login';
+import { listAcsUsers, acsUserByEmail, acsUsersByIdComp, acsUserById } from '../controllers/User/list';
+import { insertAcsUser } from '../controllers/User/insert';
+import { deleteUser } from '../controllers/User/delete';
+import { updateUser } from '../controllers/User/update';
+import { login } from '../controllers/User/login';
 
 const user: Router = Router();
 user.post('/login', login);

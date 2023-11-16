@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { listAcsPermissionsRol, acsPermissionsRolByIdProf, acsPermissionsRolByIdProfPermis } from '../controllers/acsPermisRol/list';
-import { insertAcsPermisRol } from '../controllers/acsPermisRol/insert';
-import { deletePermisRol, deletePermisRolByIdProf } from '../controllers/acsPermisRol/delete';
-import { updatePermisRol } from '../controllers/acsPermisRol/update';
+import { listAcsPermissionsRol, acsPermissionsRolByIdProf, acsPermissionsRolByIdProfPermis } from '../controllers/PermisRol/list';
+import { insertAcsPermisRol } from '../controllers/PermisRol/insert';
+import { deletePermisRol, deletePermisRolByIdProf } from '../controllers/PermisRol/delete';
+import { updatePermisRol } from '../controllers/PermisRol/update';
 
 const permisrol: Router = Router();
 permisrol.post('/', insertAcsPermisRol);

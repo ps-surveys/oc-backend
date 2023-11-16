@@ -4,10 +4,10 @@ import { Router } from 'express';
 // import { byId } from '../controllers/common/by-id';
 // import { listPay } from '../controllers/users/list-pay';
 // import { updatePay } from '../controllers/users/update-pay';
-import { listAcsCompany, acsCompanyById } from '../controllers/acsCompany/list';
-import { insertAcsCompany, addLogoAcsCompany } from '../controllers/acsCompany/insert';
-import { deleteCompany } from '../controllers/acsCompany/delete';
-import { updateCompany } from '../controllers/acsCompany/update';
+import { listAcsCompany, acsCompanyById } from '../controllers/Company/list';
+import { insertAcsCompany, addLogoAcsCompany } from '../controllers/Company/insert';
+import { deleteCompany } from '../controllers/Company/delete';
+import { updateCompany } from '../controllers/Company/update';
 
 const company: Router = Router();
 company.post('/file/:nit', addLogoAcsCompany);

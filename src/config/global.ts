@@ -15,8 +15,22 @@ export default {
     }
 }
  
-
+export const CONFIG_PROD: ConfigI = {
+    database: {
+        host: "",
+        user: "postgres",
+        port: 5432,
+        database: "organizational_climate",
+        password: "root",
+        max: 2,
+        min: 1,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 2000
+    }
+ };
 
 export const DESK_PORT = 49213;
 
-export const secret = "g4nk0B0v1no5";
+export const secret = "U4NPR0J3C7";
+const env = process.env.NODE_ENV || "development";
+export const config = CONFIG_PROD;

@@ -1,6 +1,6 @@
 import pool from './database/database'
 import { Query } from './database/query'
-import { AcsCompany } from './models/AcsCompany';
+import { AcsCompany } from './models/Company';
 
 class AcsCompanyDao {
 

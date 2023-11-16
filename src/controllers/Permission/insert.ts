@@ -1,6 +1,6 @@
 import { ResponseBody } from '../response-body'
-import { AcsPermission } from '../../service/models/AcsPermission';
-import acsPermissionDao from '../../service/AcsPermissionDao';
+import { AcsPermission } from '../../service/models/Permission';
+import acsPermissionDao from '../../service/PermissionDao';
 
 class ResponsePerm extends ResponseBody {
     constructor(success: boolean, public data, err: string) {

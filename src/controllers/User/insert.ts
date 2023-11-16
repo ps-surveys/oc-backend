@@ -1,6 +1,6 @@
 import { ResponseBody } from '../response-body'
-import { AcsUser } from '../../service/models/AcsUser';
-import acsUserDao from '../../service/AcsUserDao';
+import { AcsUser } from '../../service/models/User';
+import acsUserDao from '../../service/UserDao';
 
 
 class ResponseLogin extends ResponseBody {

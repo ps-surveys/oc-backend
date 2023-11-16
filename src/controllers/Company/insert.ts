@@ -1,6 +1,6 @@
 import { ResponseBody } from '../response-body'
-import { AcsCompany } from '../../service/models/AcsCompany';
-import acsCompanyDao from '../../service/AcsCompanyDao';
+import { AcsCompany } from '../../service/models/Company';
+import acsCompanyDao from '../../service/CompanyDao';
 
 const multer = require("multer");
 const path = require('path');

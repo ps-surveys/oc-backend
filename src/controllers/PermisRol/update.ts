@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { ResponsePermisRol } from './list';
-import { AcsPermisRol } from '../../service/models/AcsPermisRol';
-import acsPermisRolDao from "../../service/AcsPermisRolDao";
+import { AcsPermisRol } from '../../service/models/PermisRole';
+import acsPermisRolDao from "../../service/PermisRoleDao";
 
 export function updatePermisRol(req, res: Response, next) {
     const prol: AcsPermisRol = req.body;

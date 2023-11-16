@@ -1,7 +1,7 @@
 import { Response, Request } from "express";
 //import { UserService } from "../../services/user-service";
 import { ResponseProfile } from './list';
-import acsProfileDao from "../../service/AcsProfileDao";
+import acsProfileDao from "../../service/ProfileDao";
 
 export function deleteProfile(req: Request, res: Response, next) {
     const id = req.params.id;

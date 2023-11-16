@@ -1,6 +1,6 @@
 import pool from './database/database'
 import { Query } from './database/query'
-import { AcsProfile } from './models/AcsProfile'
+import { AcsProfile } from './models/Profile'
 
 class AcsProfileDao {
 

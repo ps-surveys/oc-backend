@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import { sign } from 'jsonwebtoken';
 import { secret } from '../../config/global';
 import { ResponseBody } from '../response-body';
-import acsUserDao from '../../service/AcsUserDao';
-import { AcsUser } from '../../service/models/AcsUser';
+import acsUserDao from '../../service/UserDao';
+import { AcsUser } from '../../service/models/User';
 
 interface RequestBody {
     username: string;

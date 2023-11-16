@@ -1,7 +1,7 @@
 import { Response, Request } from 'express';
 import { ResponseUser } from "./list";
-import { AcsUser } from "../../service/models/AcsUser";
-import acsUserDao from "../../service/AcsUserDao";
+import { AcsUser } from "../../service/models/User";
+import acsUserDao from "../../service/UserDao";
 
 export function updateUser(req: Request, res: Response, next) {
     const usr: AcsUser = req.body;

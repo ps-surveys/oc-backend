@@ -1,7 +1,7 @@
 import { Response, Request } from "express";
 //import { UserService } from "../../services/user-service";
 import { ResponseCompany } from "./list";
-import acsCompanyDao from "../../service/AcsCompanyDao";
+import acsCompanyDao from "../../service/CompanyDao";
 
 export function deleteCompany(req: Request, res: Response, next) {
     const id = req.params.id;

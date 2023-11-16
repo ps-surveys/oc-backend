@@ -1,6 +1,6 @@
 import { ResponseBody } from "../response-body";
 import { Response } from "express";
-import acsProfileDao from "../../service/AcsProfileDao";
+import acsProfileDao from "../../service/ProfileDao";
 
 export class ResponseProfile extends ResponseBody {
     constructor(success: boolean, public data, err: string) {

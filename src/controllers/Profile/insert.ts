@@ -1,6 +1,6 @@
 import { ResponseBody } from '../response-body'
-import { AcsProfile } from '../../service/models/AcsProfile';
-import acsProfileDao from '../../service/AcsProfileDao';
+import { AcsProfile } from '../../service/models/Profile';
+import acsProfileDao from '../../service/ProfileDao';
 
 class ResponseProf extends ResponseBody {
     constructor(success: boolean, public data, err: string) {
