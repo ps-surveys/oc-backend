@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { ResponseCondition } from "./list";
-import actConditionDao from "../../service/QuestionDao";
+import actConditionDao from "../../service/ConditionDao";
 
 export function deleteCondition(req: Request, res: Response, next) {
     const id = req.params.id;

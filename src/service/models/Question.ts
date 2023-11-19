@@ -1,4 +1,4 @@
-import { ActCondition } from './ActCondition';
+import { ActCondition } from './Condition';
 export const TYPE_QUES = "Question";
 
 export class ActQues {

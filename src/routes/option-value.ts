@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { listActOptValues, actOptValByIdOpt, actOptValByIdOptVal, actOptValByIdOptAssets } from '../controllers/optValue/list';
-import { insertActOptValue } from '../controllers/optValue/insert';
-import { deleteOptionValue, actDeleteOptValByIdOpt } from '../controllers/optValue/delete';
-import { updateOptionValue } from '../controllers/optValue/update';
+import { listActOptValues, actOptValByIdOpt, actOptValByIdOptVal, actOptValByIdOptAssets } from '../controllers/OptValue/list';
+import { insertActOptValue } from '../controllers/OptValue/insert';
+import { deleteOptionValue, actDeleteOptValByIdOpt } from '../controllers/OptValue/delete';
+import { updateOptionValue } from '../controllers/OptValue/update';
 
 const optvalue: Router = Router();
 optvalue.post('/', insertActOptValue);

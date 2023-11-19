@@ -1,6 +1,6 @@
 import { ResponseBody } from "../response-body";
 import { Response } from "express";
-import actConditionDao from "../../service/QuestionDao";
+import actConditionDao from "../../service/ConditionDao";
 
 export class ResponseCondition extends ResponseBody {
     constructor(success: boolean, public data, err: string) {

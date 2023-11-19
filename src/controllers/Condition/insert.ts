@@ -1,6 +1,6 @@
 import { ResponseBody } from '../response-body'
 import { ActCondition } from '../../service/models/Condition';
-import actConditionDao from '../../service/QuestionDao';
+import actConditionDao from '../../service/ConditionDao';
 
 class ResponseCond extends ResponseBody {
     constructor(success: boolean, public data, err: string) {
