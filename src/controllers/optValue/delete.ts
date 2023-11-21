@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { ResponseOptionValue } from "./list";
-import actOptionValueDao from "../../service/optValueDao";
+import actOptionValueDao from "../../service/OptValueDao";
 
 export function deleteOptionValue(req: Request, res: Response, next) {
     const id = req.params.id;

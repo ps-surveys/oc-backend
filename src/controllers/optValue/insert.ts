@@ -1,6 +1,6 @@
 import { ResponseBody } from '../response-body'
-import { ActOptionValue } from '../../service/models/optValue';
-import actOptValueDao from '../../service/optValueDao';
+import { ActOptionValue } from '../../service/models/OptValue';
+import actOptValueDao from '../../service/OptValueDao';
 
 class ResponseOptVal extends ResponseBody {
     constructor(success: boolean, public data, err: string) {

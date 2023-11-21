@@ -1,6 +1,6 @@
 import { ResponseBody } from "../response-body";
 import { Response } from "express";
-import actOptValueDao from "../../service/optValueDao";
+import actOptValueDao from "../../service/OptValueDao";
 
 export class ResponseOptionValue extends ResponseBody {
     constructor(success: boolean, public data, err: string) {

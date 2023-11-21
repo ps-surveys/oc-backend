@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { ResponseOptionValue } from './list';
-import { ActOptionValue } from '../../service/models/optValue';
-import actOptValueDao from '../../service/optValueDao';
+import { ActOptionValue } from '../../service/models/OptValue';
+import actOptValueDao from '../../service/OptValueDao';
 
 export function updateOptionValue(req, res: Response, next) {
     const optv: ActOptionValue = req.body;

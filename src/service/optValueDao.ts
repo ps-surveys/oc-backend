@@ -1,6 +1,6 @@
 import pool from './database/database'
 import { Query } from './database/query'
-import { ActOptionValue } from './models/optValue';
+import { ActOptionValue } from './models/OptValue';
 
 class ActOptionValueDao {
 
