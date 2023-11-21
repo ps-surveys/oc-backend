@@ -8,10 +8,12 @@ class AcsUserDao {
     public async login(email: string, pass: string): Promise<any> {
         var obj: AcsUser = null
         try {
-            // console.log('pass:' + md5(pass));
+            console.log('pass:' + md5(pass));
+            console.log("email: ", email);
 
             var rsw: any = await pool.query(Query.LOGIN, [email, md5(pass)])
             const rs = rsw.rows
+            console.log("rs: ", rs)
             rs.map((item: any) => {
                 obj = new AcsUser()
                 obj.idUser = item.id_user
@@ -27,6 +29,7 @@ class AcsUserDao {
                 obj.dateBirthUser = item.date_birth_user
                 obj.entailmentDateUser = item.entailment_date_user
             })
+            console.log("obj: ", obj)
         } catch (err) {
             console.log(err)
             throw err

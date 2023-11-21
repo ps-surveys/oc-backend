@@ -1,25 +1,25 @@
 export class Query {
-    // Querys for user
-    static SELECT_USERS: string = 'SELECT * FROM user ORDER BY id_user DESC';
-    static SELECT_USER_BY_EMAIL: string = 'SELECT * FROM user where email_user = $1 ';
-    static SELECT_USER_BY_ID: string = 'SELECT * FROM user where id_user = $1 ';
-    static SELECT_USER_BY_ID_COMP: string = 'SELECT * FROM user where id_comp = $1 ORDER BY id_user DESC ';
-    static INSERT_USER: string = 'INSERT INTO user (id_role, id_comp, ident_user, name_user, lastname_user, email_user, pass_user, rh_user, gender_user, date_birth_user, entailment_date_user) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)';
-    static DELETE_USER: string = 'DELETE FROM user WHERE id_user = $1 ';
-    static UPDATE_USER: string = 'UPDATE user SET id_role= $1, id_comp=$2, ident_user=$3, name_user=$4, lastname_user=$5, email_user=$6, pass_user=$7, rh_user=$8, gender_user=$9, date_birth_user=$10, entailment_date_user=$11 WHERE id_user=$12;';
-    static UPDATE_USER_NCP: string = 'UPDATE user SET id_role= $1, id_comp=$2, ident_user=$3, name_user=$4, lastname_user=$5, email_user=$6, rh_user=$7, gender_user=$8, date_birth_user=$9, entailment_date_user=$10 WHERE id_user=$11;';
-    // static UPDATE_USER_INFO: string = 'UPDATE user SET ident_user=$1, name_user=$2, lastname_user=$3, email_user=$4, rh_user=$5, gender_user=$6, date_birth_user=$7 WHERE id_user=$8;';
-    static LOGIN: string = 'SELECT * FROM user where email_user = $1 and pass_user = $2 ';
+    // Querys for company_user
+    static SELECT_USERS: string = 'SELECT * FROM company_user ORDER BY id_user DESC';
+    static SELECT_USER_BY_EMAIL: string = 'SELECT * FROM company_user where email_user = $1 ';
+    static SELECT_USER_BY_ID: string = 'SELECT * FROM company_user where id_user = $1 ';
+    static SELECT_USER_BY_ID_COMP: string = 'SELECT * FROM company_user where id_comp = $1 ORDER BY id_user DESC ';
+    static INSERT_USER: string = 'INSERT INTO company_user (id_role, id_comp, ident_user, name_user, lastname_user, email_user, pass_user, rh_user, gender_user, date_birth_user, entailment_date_user) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)';
+    static DELETE_USER: string = 'DELETE FROM company_user WHERE id_user = $1 ';
+    static UPDATE_USER: string = 'UPDATE company_user SET id_role= $1, id_comp=$2, ident_user=$3, name_user=$4, lastname_user=$5, email_user=$6, pass_user=$7, rh_user=$8, gender_user=$9, date_birth_user=$10, entailment_date_user=$11 WHERE id_user=$12;';
+    static UPDATE_USER_NCP: string = 'UPDATE company_user SET id_role= $1, id_comp=$2, ident_user=$3, name_user=$4, lastname_user=$5, email_user=$6, rh_user=$7, gender_user=$8, date_birth_user=$9, entailment_date_user=$10 WHERE id_user=$11;';
+    // static UPDATE_USER_INFO: string = 'UPDATE company_user SET ident_user=$1, name_user=$2, lastname_user=$3, email_user=$4, rh_user=$5, gender_user=$6, date_birth_user=$7 WHERE id_user=$8;';
+    static LOGIN: string = 'SELECT * FROM company_user WHERE email_user = $1 and pass_user = $2 ';
 
     // Querys for company
     static SELECT_COMPANIES: string = 'SELECT * FROM company ORDER BY id_comp DESC';
     static SELECT_COMPANY_BY_ID: string = 'SELECT * FROM company where id_comp = $1';
-    static INSERT_COMPANY: string = `INSERT INTO company (name_comp, nit_comp, name_legal_rep, ident_legal_rep, email_comp, ciiu_comp, address_comp, phone_comp, number_employee, risk_level_comp, logo_comp, 
-        arl_comp, flag_admin, main_economic_activity, sec_economic_activity, num_employee_dep, num_employee_indep, num_employee_cont ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)`;
+    static INSERT_COMPANY: string = `INSERT INTO company (name_comp, nit_comp, name_legal_rep, ident_legal_rep, email_comp, address_comp, phone_comp, number_employee, logo_comp, 
+        flag_admin ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
     static SELECT_COMPANY_BY_NIT: string = 'SELECT * FROM company where nit_comp = $1 ';
     static DELETE_COMPANY: string = 'DELETE FROM company WHERE id_comp = $1 ';
-    static UPDATE_COMPANY: string = `UPDATE company SET name_comp=$1, nit_comp=$2, name_legal_rep=$3, ident_legal_rep=$4, email_comp=$5, ciiu_comp=$6, address_comp=$7, phone_comp=$8, 
-    number_employee=$9, risk_level_comp=$10, logo_comp=$11, arl_comp=$12, flag_admin=$13, main_economic_activity=$15, sec_economic_activity=$16, num_employee_dep=$17, num_employee_indep=$18, num_employee_cont=$19  WHERE id_comp=$14;`;
+    static UPDATE_COMPANY: string = `UPDATE company SET name_comp=$1, nit_comp=$2, name_legal_rep=$3, ident_legal_rep=$4, email_comp=$5, address_comp=$6, phone_comp=$7, 
+    number_employee=$8, logo_comp=$9, flag_admin=$10 WHERE id_comp=$11;`;
 
     // Querys for role
     static SELECT_PROFILES: string = 'SELECT * FROM role ORDER BY id_role DESC';
@@ -108,14 +108,14 @@ export class Query {
     static INSERT_REG_FORMAT: string = 'INSERT INTO ar_register_format (id_workplace, id_format, id_user, id_comp, id_version, init_date_rf, fin_date_rf) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
     static DELETE_REG_FORMAT: string = 'DELETE FROM ar_register_format WHERE id_rf = $1 ';
     static UPDATE_REG_FORMAT: string = 'UPDATE ar_register_format SET id_workplace=$1, id_format=$2, id_user=$3, id_comp=$4, init_date_rf=$5, fin_date_rf=$6 WHERE id_rf=$7;';
-    static SELECT_REPORTS_BY_CFVI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.INIT_DATE_RF BETWEEN $4 AND $5';
-    static SELECT_REPORTS_BY_CFVE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.FIN_DATE_RF BETWEEN $4 AND $5';
-    static SELECT_REPORTS_BY_CFVUI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.INIT_DATE_RF BETWEEN $5 AND $6';
-    static SELECT_REPORTS_BY_CFVUE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.FIN_DATE_RF BETWEEN $5 AND $6';
-    static SELECT_REPORTS_BY_CFVWI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_WORKPLACE = $4 AND arf.INIT_DATE_RF BETWEEN $5 AND $6';
-    static SELECT_REPORTS_BY_CFVWE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_WORKPLACE = $4 AND arf.FIN_DATE_RF BETWEEN $5 AND $6';
-    static SELECT_REPORTS_BY_CFVUWI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.ID_WORKPLACE = $5 AND arf.INIT_DATE_RF BETWEEN $6 AND $7';
-    static SELECT_REPORTS_BY_CFVUWE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.ID_WORKPLACE = $5 AND arf.FIN_DATE_RF BETWEEN $6 AND $7';
+    static SELECT_REPORTS_BY_CFVI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.INIT_DATE_RF BETWEEN $4 AND $5';
+    static SELECT_REPORTS_BY_CFVE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.FIN_DATE_RF BETWEEN $4 AND $5';
+    static SELECT_REPORTS_BY_CFVUI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.INIT_DATE_RF BETWEEN $5 AND $6';
+    static SELECT_REPORTS_BY_CFVUE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.FIN_DATE_RF BETWEEN $5 AND $6';
+    static SELECT_REPORTS_BY_CFVWI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_WORKPLACE = $4 AND arf.INIT_DATE_RF BETWEEN $5 AND $6';
+    static SELECT_REPORTS_BY_CFVWE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_WORKPLACE = $4 AND arf.FIN_DATE_RF BETWEEN $5 AND $6';
+    static SELECT_REPORTS_BY_CFVUWI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.ID_WORKPLACE = $5 AND arf.INIT_DATE_RF BETWEEN $6 AND $7';
+    static SELECT_REPORTS_BY_CFVUWE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.ID_WORKPLACE = $5 AND arf.FIN_DATE_RF BETWEEN $6 AND $7';
 
     // Querys for permission
     static SELECT_PERMISSIONS: string = 'SELECT * FROM permission ORDER BY id_permis DESC';
@@ -190,7 +190,7 @@ export class Query {
     static INSERT_FORMAT_HEALTH: string = 'INSERT INTO acs_health_format (id_comp, identification_col, temperature, state_health, init_date, final_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
     static SELECT_ALL_HEALTHS: string = 'SELECT * FROM acs_health_format hf INNER JOIN acs_collaborator ac ON hf.identification_col = ac.identification_col';
     static SELECT_ALL_HEALTHS_BY_COMP: string = 'SELECT * FROM acs_health_format hf INNER JOIN acs_collaborator ac ON hf.identification_col = ac.identification_col where hf.id_comp = $1';
-    static SELECT_BASIC_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN company ac ON rf.id_comp = ac.id_comp INNER JOIN user au ON rf.id_user = au.id_user 
+    static SELECT_BASIC_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN company ac ON rf.id_comp = ac.id_comp INNER JOIN company_user au ON rf.id_user = au.id_user 
     INNER JOIN acs_workplace aw ON rf.id_workplace = aw.id_workplace  where rf.id_rf = $1`;
     static SELECT_SECTION_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN act_version_section vs ON rf.id_version = vs.id_version
      INNER JOIN act_section ats ON vs.id_sec = ats.id_sec INNER JOIN act_format_section afs ON ats.id_sec = afs.id_sec where rf.id_rf = $1 ORDER BY afs.order_fs ASC`

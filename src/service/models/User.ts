@@ -1,4 +1,4 @@
-export const TYPE_USER = "user";
+export const TYPE_USER = "company_user";
 
 export class AcsUser {
     idUser: number;
