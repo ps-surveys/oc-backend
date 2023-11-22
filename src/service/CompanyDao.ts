@@ -113,10 +113,9 @@ class AcsCompanyDao {
         var action = false
         try {
             await pool.query(Query.INSERT_COMPANY, [company.nameComp, company.nitComp, company.nameLegalRep,
-            company.identLegalRep, company.emailComp, company.ciiuComp, company.addressComp, company.phoneComp,
-            company.numEmployee, company.riskLvlComp, company.logoComp, company.arlComp, company.flagAdmin,
-            company.mainEconomicActivity, company.secEconomicActivity, company.numEmployeeDep, company.numEmployeeIndep,
-            company.numEmployeeCont])
+            company.identLegalRep, company.emailComp, company.addressComp, company.phoneComp,
+            company.numEmployee, company.logoComp, company.flagAdmin,
+        ])
             action = true
         } catch (err) {
             action = false
@@ -130,10 +129,8 @@ class AcsCompanyDao {
         var action = false
         try {
             await pool.query(Query.UPDATE_COMPANY, [company.nameComp, company.nitComp, company.nameLegalRep,
-            company.identLegalRep, company.emailComp, company.ciiuComp, company.addressComp, company.phoneComp,
-            company.numEmployee, company.riskLvlComp, company.logoComp, company.arlComp, company.flagAdmin, company.idComp,
-            company.mainEconomicActivity, company.secEconomicActivity, company.numEmployeeDep, company.numEmployeeIndep,
-            company.numEmployeeCont])
+            company.identLegalRep, company.emailComp, company.addressComp, company.phoneComp,
+            company.numEmployee, company.logoComp, company.flagAdmin, company.idComp])
             action = true
         } catch (err) {
             action = false
