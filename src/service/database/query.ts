@@ -105,9 +105,9 @@ export class Query {
     // Querys for ar_register_format
     static SELECT_REG_FORMATS: string = 'SELECT * FROM ar_register_format ORDER BY id_rf DESC';
     static SELECT_REG_FORMAT_BY_ID_WPLACE: string = 'SELECT * FROM ar_register_format where id_area = $1';
-    static INSERT_REG_FORMAT: string = 'INSERT INTO ar_register_format (id_area, id_format, id_user, id_comp, id_version, init_date_rf, fin_date_rf) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
+    static INSERT_REG_FORMAT: string = 'INSERT INTO ar_register_format (id_area, id_survey, id_user, id_comp, id_version, init_date_rf, fin_date_rf) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
     static DELETE_REG_FORMAT: string = 'DELETE FROM ar_register_format WHERE id_rf = $1 ';
-    static UPDATE_REG_FORMAT: string = 'UPDATE ar_register_format SET id_area=$1, id_format=$2, id_user=$3, id_comp=$4, init_date_rf=$5, fin_date_rf=$6 WHERE id_rf=$7;';
+    static UPDATE_REG_FORMAT: string = 'UPDATE ar_register_format SET id_area=$1, id_survey=$2, id_user=$3, id_comp=$4, init_date_rf=$5, fin_date_rf=$6 WHERE id_rf=$7;';
     static SELECT_REPORTS_BY_CFVI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.INIT_DATE_RF BETWEEN $4 AND $5';
     static SELECT_REPORTS_BY_CFVE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.FIN_DATE_RF BETWEEN $4 AND $5';
     static SELECT_REPORTS_BY_CFVUI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.INIT_DATE_RF BETWEEN $5 AND $6';
@@ -124,16 +124,16 @@ export class Query {
     static DELETE_PERMISSION: string = 'DELETE FROM permission WHERE id_permis = $1 ';
     static UPDATE_PERMISSION: string = 'UPDATE permission SET name_permis=$1, des_permis=$2 WHERE id_permis=$3;';
 
-    // Querys for acts_company_format
-    static SELECT_COMP_FORMATS: string = 'SELECT * FROM acts_company_format ORDER BY id_cf DESC';
-    static SELECT_COMP_FORMAT_BY_ID_COMP: string = 'SELECT * FROM acts_company_format as acf INNER JOIN act_format as af ON (acf.id_survey = af.id_survey) where id_comp = $1 and af.type_format != $2';
-    static SELECT_COMP_FORMAT_BY_ID_COMP_BIO: string = 'SELECT * FROM acts_company_format as acf INNER JOIN act_format as af ON (acf.id_survey = af.id_survey) where id_comp = $1 and af.type_format = $2';
-    static SELECT_COMP_FORMAT_BY_ID_FORM: string = 'SELECT * FROM acts_company_format where id_survey = $1';
-    static SELECT_COMP_FORMAT_BY_ID: string = 'SELECT * FROM acts_company_format WHERE id_cf = $1 ';
-    static INSERT_COMP_FORMAT: string = 'INSERT INTO acts_company_format (id_comp, id_survey, state_comp_for) VALUES ($1, $2, $3)';
-    static DELETE_COMP_FORMAT: string = 'DELETE FROM acts_company_format WHERE id_cf = $1 ';
-    static DELETE_COMP_FORMAT_BY_ID_FORM: string = 'DELETE FROM acts_company_format WHERE id_survey = $1 ';
-    static UPDATE_COMP_FORMAT: string = 'UPDATE acts_company_format SET id_comp=$1, id_survey=$2, state_comp_for=$3 WHERE id_cf=$4;';
+    // Querys for survey_assignment
+    static SELECT_COMP_FORMATS: string = 'SELECT * FROM survey_assignment ORDER BY id_sat DESC';
+    static SELECT_COMP_FORMAT_BY_ID_COMP: string = 'SELECT * FROM survey_assignment as acf INNER JOIN act_format as af ON (acf.id_survey = af.id_survey) where id_comp = $1 and af.type_format != $2';
+    static SELECT_COMP_FORMAT_BY_ID_COMP_BIO: string = 'SELECT * FROM survey_assignment as acf INNER JOIN act_format as af ON (acf.id_survey = af.id_survey) where id_comp = $1 and af.type_format = $2';
+    static SELECT_COMP_FORMAT_BY_ID_FORM: string = 'SELECT * FROM survey_assignment where id_survey = $1';
+    static SELECT_COMP_FORMAT_BY_ID: string = 'SELECT * FROM survey_assignment WHERE id_sat = $1 ';
+    static INSERT_COMP_FORMAT: string = 'INSERT INTO survey_assignment (id_comp, id_survey, state_comp_sur) VALUES ($1, $2, $3)';
+    static DELETE_COMP_FORMAT: string = 'DELETE FROM survey_assignment WHERE id_sat = $1 ';
+    static DELETE_COMP_FORMAT_BY_ID_FORM: string = 'DELETE FROM survey_assignment WHERE id_survey = $1 ';
+    static UPDATE_COMP_FORMAT: string = 'UPDATE survey_assignment SET id_comp=$1, id_survey=$2, state_comp_sur=$3 WHERE id_sat=$4;';
 
     // Querys for act_format_section
     static SELECT_FORM_SECTIONS: string = 'SELECT * FROM act_format_section ORDER BY id_fs DESC';
