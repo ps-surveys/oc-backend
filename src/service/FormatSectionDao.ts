@@ -11,7 +11,7 @@ class ActFormatSectionDao {
       list = rs.map((item: any) => {
         const obj: FormatSection = new FormatSection();
         obj.idSec = item.id_sec;
-        obj.idFormat = item.id_format;
+        obj.idFormat = item.id_survey;
         obj.idFs = item.id_fs;
         obj.stateFs = item.state_fs;
         obj.orderFs = item.order_fs;
@@ -72,7 +72,7 @@ class ActFormatSectionDao {
       rs.map((item: any) => {
         obj = new FormatSection();
         obj.idSec = item.id_sec;
-        obj.idFormat = item.id_format;
+        obj.idFormat = item.id_survey;
         obj.idFs = item.id_fs;
         obj.stateFs = item.state_fs;
         obj.orderFs = item.order_fs;

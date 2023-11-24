@@ -1,6 +1,6 @@
 import { ResponseBody } from "../response-body";
-import { Format } from "../../service/models/Format";
-import FormatDao from "../../service/FormatDao";
+import { Format } from "../../service/models/Survey";
+import FormatDao from "../../service/SurveyDao";
 
 class ResponseForm extends ResponseBody {
   constructor(success: boolean, public data, err: string) {
