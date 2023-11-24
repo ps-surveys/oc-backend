@@ -153,21 +153,21 @@ export class Query {
     static DELETE_PERMISSION_ROL_BY_ID_PROF: string = 'DELETE FROM permis_role WHERE id_role = $1';
     static UPDATE_PERMISSION_ROL: string = 'UPDATE permis_role SET id_role=$1, id_permis=$2 WHERE id_permis_role=$3;';
 
-    // Querys for act_version
-    static SELECT_VERSIONS_BY_ID_FORM: string = 'SELECT av.*, af.* FROM act_version as av INNER JOIN act_format af ON (av.id_survey = af.id_survey) WHERE av.id_survey = $1 ORDER BY av.creation_date DESC';
-    static SELECT_VERSION_BY_ID_FORM_COD_VER: string = 'SELECT * FROM act_version WHERE id_survey = $1 AND cod_sv = $2 AND version = $3'
-    static SELECT_VERSION_BY_ID_FORM_COD_VER_WHEN_UPDATE: string = 'SELECT * FROM act_version WHERE id_survey = $1 AND cod_sv = $2 AND version = $3 and id_sv <> $4'
-    static SELECT_VERSION_BY_ID: string = 'SELECT * FROM act_version WHERE id_sv = $1'
-    static INSERT_VERSION: string = 'INSERT INTO act_version (id_survey, creation_date, cod_sv, state_sv, version) VALUES ($1, $2, $3, $4, $5)';
-    static DELETE_VERSION: string = 'DELETE FROM act_version WHERE id_sv = $1 ';
-    static UPDATE_VERSION: string = 'UPDATE act_version SET id_survey=$1, creation_date=$2, cod_sv=$3, state_sv=$4, version=$5 WHERE id_sv=$6;';
+    // Querys for survey_version
+    static SELECT_VERSIONS_BY_ID_FORM: string = 'SELECT av.*, af.* FROM survey_version as av INNER JOIN act_format af ON (av.id_survey = af.id_survey) WHERE av.id_survey = $1 ORDER BY av.creation_date DESC';
+    static SELECT_VERSION_BY_ID_FORM_COD_VER: string = 'SELECT * FROM survey_version WHERE id_survey = $1 AND cod_sv = $2 AND version = $3'
+    static SELECT_VERSION_BY_ID_FORM_COD_VER_WHEN_UPDATE: string = 'SELECT * FROM survey_version WHERE id_survey = $1 AND cod_sv = $2 AND version = $3 and id_sv <> $4'
+    static SELECT_VERSION_BY_ID: string = 'SELECT * FROM survey_version WHERE id_sv = $1'
+    static INSERT_VERSION: string = 'INSERT INTO survey_version (id_survey, creation_date, cod_sv, state_sv, version) VALUES ($1, $2, $3, $4, $5)';
+    static DELETE_VERSION: string = 'DELETE FROM survey_version WHERE id_sv = $1 ';
+    static UPDATE_VERSION: string = 'UPDATE survey_version SET id_survey=$1, creation_date=$2, cod_sv=$3, state_sv=$4, version=$5 WHERE id_sv=$6;';
 
     // Querys for act_version_section
     static SELECT_VER_SECTIONS_BY_ID_VER: string = 'SELECT * FROM act_version_section WHERE id_sv = $1 ORDER BY id_ver_sec ASC';
     static SELECT_VER_SECTIONS_INFO_BY_ID_VER: string = 'SELECT * FROM act_version_section vs INNER JOIN act_section sec ON sec.id_sec = vs.id_sec INNER JOIN act_format_section fs ON vs.id_sec = fs.id_sec WHERE vs.id_sv = $1 ORDER BY fs.order_fs ASC';
     // static SELECT_VER_SECTIONS_INFO_BY_ID_VER: string = 'SELECT * FROM act_version_section vs INNER JOIN act_section sec ON sec.id_sec = vs.id_sec INNER JOIN act_format_section fs ON vs.id_sec = fs.id_sec WHERE vs.id_sv = $1 AND fs.state_fs = true ORDER BY fs.order_fs ASC';
     // static SELECT_SECTIONS_NO_VER: string = 'select * from act_section se where id_sec not in (SELECT vs.id_Sec FROM act_version_section vs WHERE vs.id_sv = $1)';
-    static SELECT_SECTIONS_NO_VER: string = 'SELECT * FROM act_section se WHERE id_sec NOT IN (SELECT vs.id_Sec FROM act_version_section vs WHERE vs.id_sv = $1) AND id_sec IN (SELECT afs.id_sec FROM act_format_section as afs INNER JOIN act_version as av ON (afs.id_survey = av.id_survey) WHERE afs.id_survey = $2)';
+    static SELECT_SECTIONS_NO_VER: string = 'SELECT * FROM act_section se WHERE id_sec NOT IN (SELECT vs.id_Sec FROM act_version_section vs WHERE vs.id_sv = $1) AND id_sec IN (SELECT afs.id_sec FROM act_format_section as afs INNER JOIN survey_version as av ON (afs.id_survey = av.id_survey) WHERE afs.id_survey = $2)';
     static INSERT_VER_SECTION: string = 'INSERT INTO act_version_section (id_sv, id_sec) VALUES ($1, $2)';
     static DELETE_VER_SECTION: string = 'DELETE FROM act_version_section WHERE id_ver_sec = $1';
 
