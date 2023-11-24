@@ -11,7 +11,7 @@ class AcsWorkplaceDao {
             var list = []
             list = rs.map((item: any) => {
                 const obj: AcsWorkplace = new AcsWorkplace()
-                obj.idWorkplace = item.id_area
+                obj.idWorkplace = item.id_work_area
                 obj.idComp = item.id_comp
                 obj.nameWorkplace = item.area_name
                 obj.addressWorkplace = item.address_workplace
@@ -34,7 +34,7 @@ class AcsWorkplaceDao {
             var obj: AcsWorkplace = null
             rs.map((item: any) => {
                 obj = new AcsWorkplace()
-                obj.idWorkplace = item.id_area
+                obj.idWorkplace = item.id_work_area
                 obj.idComp = item.id_comp
                 obj.nameWorkplace = item.area_name
                 obj.addressWorkplace = item.address_workplace
@@ -56,7 +56,7 @@ class AcsWorkplaceDao {
             var list = []
             list = rs.map((item: any) => {
                 const obj: AcsWorkplace = new AcsWorkplace()
-                obj.idWorkplace = item.id_area
+                obj.idWorkplace = item.id_work_area
                 obj.idComp = item.id_comp
                 obj.nameWorkplace = item.area_name
                 obj.addressWorkplace = item.address_workplace
@@ -75,8 +75,7 @@ class AcsWorkplaceDao {
     public async insert(wplace: AcsWorkplace): Promise<any> {
         var action = false
         try {
-            await pool.query(Query.INSERT_WORKPLACE, [wplace.idComp, wplace.nameWorkplace,
-            wplace.addressWorkplace, wplace.phoneWorkplace, wplace.fixed, wplace.riskLvlWorkplace])
+            await pool.query(Query.INSERT_WORKPLACE, [wplace.idComp, wplace.nameWorkplace])
             action = true
         } catch (err) {
             action = false
@@ -89,8 +88,7 @@ class AcsWorkplaceDao {
     public async update(wplace: AcsWorkplace): Promise<any> {
         var action = false
         try {
-            await pool.query(Query.UPDATE_WORKPLACE, [wplace.idComp, wplace.nameWorkplace,
-            wplace.addressWorkplace, wplace.phoneWorkplace, wplace.fixed, wplace.riskLvlWorkplace, wplace.idWorkplace])
+            await pool.query(Query.UPDATE_WORKPLACE, [wplace.idComp, wplace.nameWorkplace, wplace.idWorkplace])
             action = true
         } catch (err) {
             action = false
