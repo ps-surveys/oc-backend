@@ -1,6 +1,6 @@
 import pool from "./database/database";
 import { Query } from "./database/query";
-import { FormatSection } from "./models/FormatSection";
+import { FormatSection } from "./models/SurveySection";
 
 class ActFormatSectionDao {
   public async formatSections(): Promise<any> {
@@ -12,9 +12,9 @@ class ActFormatSectionDao {
         const obj: FormatSection = new FormatSection();
         obj.idSec = item.id_sec;
         obj.idFormat = item.id_survey;
-        obj.idFs = item.id_fs;
-        obj.stateFs = item.state_fs;
-        obj.orderFs = item.order_fs;
+        obj.idFs = item.id_ss;
+        obj.stateFs = item.state_ss;
+        obj.orderFs = item.order_ss;
         return obj;
       });
     } catch (err) {
@@ -73,9 +73,9 @@ class ActFormatSectionDao {
         obj = new FormatSection();
         obj.idSec = item.id_sec;
         obj.idFormat = item.id_survey;
-        obj.idFs = item.id_fs;
-        obj.stateFs = item.state_fs;
-        obj.orderFs = item.order_fs;
+        obj.idFs = item.id_ss;
+        obj.stateFs = item.state_ss;
+        obj.orderFs = item.order_ss;
       });
     } catch (err) {
       console.log(err);
