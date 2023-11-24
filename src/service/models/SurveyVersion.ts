@@ -1,6 +1,6 @@
 export const TYPE_VERSION = "act_version";
 
-export class ActVersion {
+export class SurveyVersion {
     idVersion: number;
     idFormat: number;
     dateCreated: Date;

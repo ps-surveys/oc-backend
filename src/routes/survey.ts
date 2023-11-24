@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { listActFormat, actFormatById, actFormatByIdRf } from '../controllers/actFormat/list';
-import { insertActFormat } from '../controllers/actFormat/insert';
-import { deleteFormat } from '../controllers/actFormat/delete';
-import { updateFormat } from '../controllers/actFormat/update';
+import { listActFormat, actFormatById, actFormatByIdRf } from '../controllers/Survey/list';
+import { insertActFormat } from '../controllers/Survey/insert';
+import { deleteFormat } from '../controllers/Survey/delete';
+import { updateFormat } from '../controllers/Survey/update';
 
 const format: Router = Router();
 format.post('/', insertActFormat);

@@ -1,6 +1,6 @@
 import pool from './database/database'
 import { Query } from './database/query'
-import { ActVersion } from './models/SurveyVersion';
+import { SurveyVersion } from './models/SurveyVersion';
 
 class ActVersionDao {
 
@@ -21,9 +21,9 @@ class ActVersionDao {
         try {
             var rsw: any = await pool.query(Query.SELECT_VERSION_BY_ID_FORM_COD_VER, [idForm, codVer, ver])
             const rs = rsw.rows
-            var obj: ActVersion = null
+            var obj: SurveyVersion = null
             rs.map((item: any) => {
-                obj = new ActVersion()
+                obj = new SurveyVersion()
                 obj.idFormat = item.id_survey
                 obj.idVersion = item.id_sv
                 obj.dateCreated = item.creation_date
@@ -43,9 +43,9 @@ class ActVersionDao {
         try {
             var rsw: any = await pool.query(Query.SELECT_VERSION_BY_ID_FORM_COD_VER_WHEN_UPDATE, [idForm, codVer, ver, idVersion])
             const rs = rsw.rows
-            var obj: ActVersion = null
+            var obj: SurveyVersion = null
             rs.map((item: any) => {
-                obj = new ActVersion()
+                obj = new SurveyVersion()
                 obj.idFormat = item.id_survey
                 obj.idVersion = item.id_sv
                 obj.dateCreated = item.creation_date
@@ -65,9 +65,9 @@ class ActVersionDao {
         try {
             var rsw: any = await pool.query(Query.SELECT_VERSION_BY_ID, [idVer])
             const rs = rsw.rows
-            var obj: ActVersion = null
+            var obj: SurveyVersion = null
             rs.map((item: any) => {
-                obj = new ActVersion()
+                obj = new SurveyVersion()
                 obj.idFormat = item.id_survey
                 obj.idVersion = item.id_sv
                 obj.dateCreated = item.creation_date
@@ -83,7 +83,7 @@ class ActVersionDao {
         return obj
     }
 
-    public async insert(version: ActVersion): Promise<any> {
+    public async insert(version: SurveyVersion): Promise<any> {
         var action = false;
         try {
             await pool.query(Query.INSERT_VERSION, [version.idFormat, version.dateCreated,
@@ -97,7 +97,7 @@ class ActVersionDao {
         return action
     }
 
-    public async update(version: ActVersion): Promise<any> {
+    public async update(version: SurveyVersion): Promise<any> {
         var action = false
         try {
             await pool.query(Query.UPDATE_VERSION, [version.idFormat, version.dateCreated,
