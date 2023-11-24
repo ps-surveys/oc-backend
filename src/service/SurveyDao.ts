@@ -111,7 +111,7 @@ class ActFormatDao {
       id_survey = form.rows[0]["id_survey"];
 
       add_first_version =
-        "INSERT INTO ACT_VERSION (id_survey, creation_date, cod_sv, state_sv, version) VALUES (" +
+        "INSERT INTO survey_version (id_survey, creation_date, cod_sv, state_sv, version) VALUES (" +
         id_survey +
         ", '" +
         format.issueDate +

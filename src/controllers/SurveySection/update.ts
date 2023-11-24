@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { ResponseFormSection } from "./list";
-import { FormatSection } from "../../service/models/FormatSection";
-import FormatSectionDao from "../../service/FormatSectionDao";
+import { FormatSection } from "../../service/models/SurveySection";
+import FormatSectionDao from "../../service/SurveySectionDao";
 
 export function updateFormSection(req, res: Response, next) {
   const fsection: FormatSection = req.body;
