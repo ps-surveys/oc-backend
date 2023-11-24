@@ -1,6 +1,6 @@
 import { ResponseBody } from "../response-body";
-import { FormatSection } from "../../service/models/FormatSection";
-import FormatSectionDao from "../../service/FormatSectionDao";
+import { FormatSection } from "../../service/models/SurveySection";
+import FormatSectionDao from "../../service/SurveySectionDao";
 
 class ResponseFs extends ResponseBody {
   constructor(success: boolean, public data, err: string) {
