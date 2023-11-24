@@ -38,12 +38,12 @@ export class Query {
     static UPDATE_FORMAT: string = 'UPDATE act_format SET id_user=$1, name_format=$2, desc_format=$3, type_format=$4, cod_format=$5, issue_date=$6 WHERE id_survey=$7;';
 
     // Querys for work_area
-    static SELECT_WORKPLACES: string = 'SELECT * FROM work_area ORDER BY id_area DESC';
-    static SELECT_WORKPLACES_BY_ID_COMP: string = 'SELECT * FROM work_area where id_comp = $1 ORDER BY id_area DESC';
+    static SELECT_WORKPLACES: string = 'SELECT * FROM work_area ORDER BY id_work_area DESC';
+    static SELECT_WORKPLACES_BY_ID_COMP: string = 'SELECT * FROM work_area where id_comp = $1 ORDER BY id_work_area DESC';
     static SELECT_WORKPLACE_BY_NAME: string = 'SELECT * FROM work_area where area_name = $1 ';
-    static INSERT_WORKPLACE: string = 'INSERT INTO work_area (id_comp, area_name, address_workplace, phone_workplace, fixed, risk_level_workplace) VALUES ($1, $2, $3, $4, $5, $6)';
-    static DELETE_WORKPLACE: string = 'DELETE FROM work_area WHERE id_area = $1 ';
-    static UPDATE_WORKPLACE: string = 'UPDATE work_area SET id_comp=$1, area_name=$2, address_workplace=$3, phone_workplace=$4, fixed=$5, risk_level_workplace=$6 WHERE id_area=$7;';
+    static INSERT_WORKPLACE: string = 'INSERT INTO work_area (id_comp, area_name) VALUES ($1, $2)';
+    static DELETE_WORKPLACE: string = 'DELETE FROM work_area WHERE id_work_area = $1 ';
+    static UPDATE_WORKPLACE: string = 'UPDATE work_area SET id_comp=$1, area_name=$2 WHERE id_work_area=$3;';
 
     // Querys for act_section
     static SELECT_SECTIONS: string = 'SELECT * FROM act_section ORDER BY id_sec DESC';
@@ -193,7 +193,7 @@ export class Query {
     static SELECT_BASIC_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN company ac ON rf.id_comp = ac.id_comp INNER JOIN company_user au ON rf.id_user = au.id_user 
     INNER JOIN work_area aw ON rf.id_area = aw.id_area  where rf.id_rf = $1`;
     static SELECT_SECTION_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN act_version_section vs ON rf.id_version = vs.id_version 
-    INNER JOIN act_section ats ON vs.id_sec = ats.id_sec INNER JOIN act_format_section afs ON ats.id_sec = afs.id_sec where rf.id_rf = $1 ORDER BY afs.order_ss ASC`
+    INNER JOIN act_section ats ON vs.id_sec = ats.id_sec INNER JOIN act_format_section afs ON ats.id_sec = afs.id_sec where rf.id_rf = $1 ORDER BY afs.order_fs ASC`;
 
     //  INNER JOIN Question aq ON ats.id_sec = aq.id_sec
     //  static SELECT_RESPONSE_QUES: string = `SELECT * FROM $1`
