@@ -1,5 +1,5 @@
 export const TYPE_COMPANY = "company";
-
+// company
 export class AcsCompany {
     idComp: number;
     nameComp: string;
