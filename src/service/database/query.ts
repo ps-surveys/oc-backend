@@ -37,13 +37,13 @@ export class Query {
     static DELETE_FORMAT: string = 'DELETE FROM act_format WHERE id_survey = $1 ';
     static UPDATE_FORMAT: string = 'UPDATE act_format SET id_user=$1, name_format=$2, desc_format=$3, type_format=$4, cod_format=$5, issue_date=$6 WHERE id_survey=$7;';
 
-    // Querys for acs_workplace
-    static SELECT_WORKPLACES: string = 'SELECT * FROM acs_workplace ORDER BY id_workplace DESC';
-    static SELECT_WORKPLACES_BY_ID_COMP: string = 'SELECT * FROM acs_workplace where id_comp = $1 ORDER BY id_workplace DESC';
-    static SELECT_WORKPLACE_BY_NAME: string = 'SELECT * FROM acs_workplace where name_workplace = $1 ';
-    static INSERT_WORKPLACE: string = 'INSERT INTO acs_workplace (id_comp, name_workplace, address_workplace, phone_workplace, fixed, risk_level_workplace) VALUES ($1, $2, $3, $4, $5, $6)';
-    static DELETE_WORKPLACE: string = 'DELETE FROM acs_workplace WHERE id_workplace = $1 ';
-    static UPDATE_WORKPLACE: string = 'UPDATE acs_workplace SET id_comp=$1, name_workplace=$2, address_workplace=$3, phone_workplace=$4, fixed=$5, risk_level_workplace=$6 WHERE id_workplace=$7;';
+    // Querys for work_area
+    static SELECT_WORKPLACES: string = 'SELECT * FROM work_area ORDER BY id_area DESC';
+    static SELECT_WORKPLACES_BY_ID_COMP: string = 'SELECT * FROM work_area where id_comp = $1 ORDER BY id_area DESC';
+    static SELECT_WORKPLACE_BY_NAME: string = 'SELECT * FROM work_area where area_name = $1 ';
+    static INSERT_WORKPLACE: string = 'INSERT INTO work_area (id_comp, area_name, address_workplace, phone_workplace, fixed, risk_level_workplace) VALUES ($1, $2, $3, $4, $5, $6)';
+    static DELETE_WORKPLACE: string = 'DELETE FROM work_area WHERE id_area = $1 ';
+    static UPDATE_WORKPLACE: string = 'UPDATE work_area SET id_comp=$1, area_name=$2, address_workplace=$3, phone_workplace=$4, fixed=$5, risk_level_workplace=$6 WHERE id_area=$7;';
 
     // Querys for act_section
     static SELECT_SECTIONS: string = 'SELECT * FROM act_section ORDER BY id_sec DESC';
@@ -104,18 +104,18 @@ export class Query {
     static querySelectQuestionDependency: string = 'SELECT qd.*, qc2.*, qd.id_ques as id_quesFather, qd.id_sec as id_secChild FROM act_dependency qd INNER JOIN Question qc ON qc.id_ques = qd.id_ques LEFT JOIN  Question qc2 ON qc2.id_ques = qd.id_ques2 WHERE qd.id_ques2 = $1 ORDER BY qd.id_ques ASC';
     // Querys for ar_register_format
     static SELECT_REG_FORMATS: string = 'SELECT * FROM ar_register_format ORDER BY id_rf DESC';
-    static SELECT_REG_FORMAT_BY_ID_WPLACE: string = 'SELECT * FROM ar_register_format where id_workplace = $1';
-    static INSERT_REG_FORMAT: string = 'INSERT INTO ar_register_format (id_workplace, id_survey, id_user, id_comp, id_sv, init_date_rf, fin_date_rf) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
+    static SELECT_REG_FORMAT_BY_ID_WPLACE: string = 'SELECT * FROM ar_register_format where id_area = $1';
+    static INSERT_REG_FORMAT: string = 'INSERT INTO ar_register_format (id_area, id_format, id_user, id_comp, id_version, init_date_rf, fin_date_rf) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
     static DELETE_REG_FORMAT: string = 'DELETE FROM ar_register_format WHERE id_rf = $1 ';
-    static UPDATE_REG_FORMAT: string = 'UPDATE ar_register_format SET id_workplace=$1, id_survey=$2, id_user=$3, id_comp=$4, init_date_rf=$5, fin_date_rf=$6 WHERE id_rf=$7;';
-    static SELECT_REPORTS_BY_CFVI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.INIT_DATE_RF BETWEEN $4 AND $5';
-    static SELECT_REPORTS_BY_CFVE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.FIN_DATE_RF BETWEEN $4 AND $5';
-    static SELECT_REPORTS_BY_CFVUI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.INIT_DATE_RF BETWEEN $5 AND $6';
-    static SELECT_REPORTS_BY_CFVUE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.FIN_DATE_RF BETWEEN $5 AND $6';
-    static SELECT_REPORTS_BY_CFVWI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_WORKPLACE = $4 AND arf.INIT_DATE_RF BETWEEN $5 AND $6';
-    static SELECT_REPORTS_BY_CFVWE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_WORKPLACE = $4 AND arf.FIN_DATE_RF BETWEEN $5 AND $6';
-    static SELECT_REPORTS_BY_CFVUWI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.ID_WORKPLACE = $5 AND arf.INIT_DATE_RF BETWEEN $6 AND $7';
-    static SELECT_REPORTS_BY_CFVUWE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.name_workplace FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN acs_workplace aw ON (arf.id_workplace = aw.id_workplace) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.ID_WORKPLACE = $5 AND arf.FIN_DATE_RF BETWEEN $6 AND $7';
+    static UPDATE_REG_FORMAT: string = 'UPDATE ar_register_format SET id_area=$1, id_format=$2, id_user=$3, id_comp=$4, init_date_rf=$5, fin_date_rf=$6 WHERE id_rf=$7;';
+    static SELECT_REPORTS_BY_CFVI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.INIT_DATE_RF BETWEEN $4 AND $5';
+    static SELECT_REPORTS_BY_CFVE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.FIN_DATE_RF BETWEEN $4 AND $5';
+    static SELECT_REPORTS_BY_CFVUI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.INIT_DATE_RF BETWEEN $5 AND $6';
+    static SELECT_REPORTS_BY_CFVUE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.FIN_DATE_RF BETWEEN $5 AND $6';
+    static SELECT_REPORTS_BY_CFVWI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_WORKPLACE = $4 AND arf.INIT_DATE_RF BETWEEN $5 AND $6';
+    static SELECT_REPORTS_BY_CFVWE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_WORKPLACE = $4 AND arf.FIN_DATE_RF BETWEEN $5 AND $6';
+    static SELECT_REPORTS_BY_CFVUWI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.ID_WORKPLACE = $5 AND arf.INIT_DATE_RF BETWEEN $6 AND $7';
+    static SELECT_REPORTS_BY_CFVUWE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.ID_WORKPLACE = $5 AND arf.FIN_DATE_RF BETWEEN $6 AND $7';
 
     // Querys for permission
     static SELECT_PERMISSIONS: string = 'SELECT * FROM permission ORDER BY id_permis DESC';
@@ -191,9 +191,9 @@ export class Query {
     static SELECT_ALL_HEALTHS: string = 'SELECT * FROM acs_health_format hf INNER JOIN acs_collaborator ac ON hf.identification_col = ac.identification_col';
     static SELECT_ALL_HEALTHS_BY_COMP: string = 'SELECT * FROM acs_health_format hf INNER JOIN acs_collaborator ac ON hf.identification_col = ac.identification_col where hf.id_comp = $1';
     static SELECT_BASIC_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN company ac ON rf.id_comp = ac.id_comp INNER JOIN company_user au ON rf.id_user = au.id_user 
-    INNER JOIN acs_workplace aw ON rf.id_workplace = aw.id_workplace  where rf.id_rf = $1`;
-    static SELECT_SECTION_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN act_version_section vs ON rf.id_sv = vs.id_sv
-     INNER JOIN act_section ats ON vs.id_sec = ats.id_sec INNER JOIN act_format_section afs ON ats.id_sec = afs.id_sec where rf.id_rf = $1 ORDER BY afs.order_fs ASC`
+    INNER JOIN work_area aw ON rf.id_area = aw.id_area  where rf.id_rf = $1`;
+    static SELECT_SECTION_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN act_version_section vs ON rf.id_version = vs.id_version 
+    INNER JOIN act_section ats ON vs.id_sec = ats.id_sec INNER JOIN act_format_section afs ON ats.id_sec = afs.id_sec where rf.id_rf = $1 ORDER BY afs.order_fs ASC`
 
     //  INNER JOIN Question aq ON ats.id_sec = aq.id_sec
     //  static SELECT_RESPONSE_QUES: string = `SELECT * FROM $1`
