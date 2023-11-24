@@ -1,6 +1,6 @@
 import { ResponseBody } from "../response-body";
 import { Response } from "express";
-import FormatDao from "../../service/FormatDao";
+import FormatDao from "../../service/SurveyDao";
 
 export class ResponseFormat extends ResponseBody {
   constructor(success: boolean, public data, err: string) {

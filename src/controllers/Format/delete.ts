@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { ResponseFormat } from "./list";
-import FormatDao from "../../service/FormatDao";
+import FormatDao from "../../service/SurveyDao";
 
 export function deleteFormat(req: Request, res: Response, next) {
   const id = req.params.id;

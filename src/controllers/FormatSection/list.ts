@@ -33,7 +33,7 @@ export function actFormSectionByIdForm(req, res: Response, next) {
 export function actFormSectionByIdFormFill(req, res: Response, next) {
   FormatSectionDao.formatSectionsByIdFormFill(
     req.params.id_form_f,
-    req.params.id_version
+    req.params.id_sv
   ).then(
     (data) => {
       res.send(new ResponseFormSection(true, data, null));
