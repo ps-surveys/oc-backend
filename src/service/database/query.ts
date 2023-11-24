@@ -45,15 +45,15 @@ export class Query {
     static DELETE_WORKPLACE: string = 'DELETE FROM work_area WHERE id_work_area = $1 ';
     static UPDATE_WORKPLACE: string = 'UPDATE work_area SET id_comp=$1, area_name=$2 WHERE id_work_area=$3;';
 
-    // Querys for survey_section
-    static SELECT_SECTIONS: string = 'SELECT * FROM survey_section ORDER BY id_sec DESC';
-    static SELECT_SECTIONS_BY_NAME: string = 'SELECT * FROM survey_section where name_sec = $1';
-    static SELECT_SECTION_BY_ID: string = 'SELECT * FROM survey_section where id_sec = $1';
-    static SELECT_SECTIONS_NOT_IN_FORM: string = 'SELECT * FROM survey_section WHERE id_sec NOT IN (SELECT id_sec FROM survey_assignment WHERE id_survey = $1)';
-    static INSERT_SECTION: string = 'INSERT INTO survey_section (name_sec, desc_sec, type_sec, table_name, cycle) VALUES ($1, $2, $3, $4, $5) RETURNING *';
-    static DELETE_SECTION: string = 'DELETE FROM survey_section WHERE id_sec = $1 ';
-    static UPDATE_SECTION: string = 'UPDATE survey_section SET name_sec=$1, desc_sec=$2, type_sec=$3, table_name=$4, cycle=$6 WHERE id_sec=$5;';
-    static UPDATE_SECTION_TABLE: string = 'UPDATE survey_section SET table_name=$1 WHERE id_sec=$2;';
+    // Querys for all_section
+    static SELECT_SECTIONS: string = 'SELECT * FROM all_section ORDER BY id_sec DESC';
+    static SELECT_SECTIONS_BY_NAME: string = 'SELECT * FROM all_section where name_sec = $1';
+    static SELECT_SECTION_BY_ID: string = 'SELECT * FROM all_section where id_sec = $1';
+    static SELECT_SECTIONS_NOT_IN_FORM: string = 'SELECT * FROM all_section WHERE id_sec NOT IN (SELECT id_sec FROM survey_assignment WHERE id_survey = $1)';
+    static INSERT_SECTION: string = 'INSERT INTO all_section (name_sec, desc_sec, type_sec, table_name, cycle) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+    static DELETE_SECTION: string = 'DELETE FROM all_section WHERE id_sec = $1 ';
+    static UPDATE_SECTION: string = 'UPDATE all_section SET name_sec=$1, desc_sec=$2, type_sec=$3, table_name=$4, cycle=$6 WHERE id_sec=$5;';
+    static UPDATE_SECTION_TABLE: string = 'UPDATE all_section SET table_name=$1 WHERE id_sec=$2;';
 
     // Querys for Option
     static SELECT_OPTIONS: string = 'SELECT * FROM Option ORDER BY id_opt DESC';
@@ -135,14 +135,14 @@ export class Query {
     static DELETE_COMP_FORMAT_BY_ID_FORM: string = 'DELETE FROM survey_assignment WHERE id_survey = $1 ';
     static UPDATE_COMP_FORMAT: string = 'UPDATE survey_assignment SET id_comp=$1, id_survey=$2, state_comp_sur=$3 WHERE id_sat=$4;';
 
-    // Querys for survey_assignment
-    static SELECT_FORM_SECTIONS: string = 'SELECT * FROM survey_assignment ORDER BY id_ss DESC';
-    static SELECT_FORM_SECTIONS_BY_ID_FORM: string = 'SELECT afsn.*, asn.* FROM survey_assignment as afsn INNER JOIN survey_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn. id_survey = $1 ORDER BY afsn.order_ss ASC';
-    static SELECT_FORM_SECTIONS_BY_ID_FORM_FILL: string = 'SELECT afsn.*, asn.* FROM survey_assignment as afsn INNER JOIN survey_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn.id_survey = $1 AND afsn.state_ss = true AND afsn.id_sec IN (SELECT id_sec FROM act_version_section WHERE id_sv = $2) ORDER BY afsn.order_ss ASC';
-    static SELECT_FORM_SECTIONS_BY_FORM_ORDER: string = 'SELECT * FROM survey_assignment WHERE id_survey = $1 AND order_ss = $2';
-    static INSERT_FORM_SECTION: string = 'INSERT INTO survey_assignment (id_sec, id_survey, state_ss, order_ss) VALUES ($1, $2, $3, $4)';
-    static DELETE_FORM_SECTION: string = 'DELETE FROM survey_assignment WHERE id_ss = $1 ';
-    static UPDATE_FORM_SECTION: string = 'UPDATE survey_assignment SET id_sec=$1, id_survey=$2, state_ss=$3, order_ss=$4 WHERE id_ss=$5;';
+    // Querys for survey_section
+    static SELECT_FORM_SECTIONS: string = 'SELECT * FROM survey_section ORDER BY id_ss DESC';
+    static SELECT_FORM_SECTIONS_BY_ID_FORM: string = 'SELECT afsn.*, asn.* FROM survey_section as afsn INNER JOIN survey_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn. id_survey = $1 ORDER BY afsn.order_ss ASC';
+    static SELECT_FORM_SECTIONS_BY_ID_FORM_FILL: string = 'SELECT afsn.*, asn.* FROM survey_section as afsn INNER JOIN survey_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn.id_survey = $1 AND afsn.state_ss = true AND afsn.id_sec IN (SELECT id_sec FROM act_version_section WHERE id_sv = $2) ORDER BY afsn.order_ss ASC';
+    static SELECT_FORM_SECTIONS_BY_FORM_ORDER: string = 'SELECT * FROM survey_section WHERE id_survey = $1 AND order_ss = $2';
+    static INSERT_FORM_SECTION: string = 'INSERT INTO survey_section (id_sec, id_survey, state_ss, order_ss) VALUES ($1, $2, $3, $4)';
+    static DELETE_FORM_SECTION: string = 'DELETE FROM survey_section WHERE id_ss = $1 ';
+    static UPDATE_FORM_SECTION: string = 'UPDATE survey_section SET id_sec=$1, id_survey=$2, state_ss=$3, order_ss=$4 WHERE id_ss=$5;';
 
     // Querys for permis_role
     static SELECT_PERMISSIONS_ROL: string = 'SELECT * FROM permis_role ORDER BY id_permis_role DESC';
