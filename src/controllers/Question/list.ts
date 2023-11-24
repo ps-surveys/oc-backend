@@ -36,8 +36,8 @@ export function actQuesByIdSec(req, res: Response, next) {
 }
 
 export function actQuesByIdSecFill(req, res: Response, next) {
-    // actQuesDao.questionsByIdSecFill(req.params.id_sec, req.params.id_version)
-    actQuesDao.questionsByOrderQuest(req.params.id_sec, req.params.id_version)
+    // actQuesDao.questionsByIdSecFill(req.params.id_sec, req.params.id_sv)
+    actQuesDao.questionsByOrderQuest(req.params.id_sec, req.params.id_sv)
         .then(data => {
             res.send(new ResponseQuestion(true, data, null));
         }, err => {
