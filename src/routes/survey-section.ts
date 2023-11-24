@@ -3,10 +3,10 @@ import {
   listActFormSections,
   actFormSectionByIdForm,
   actFormSectionByIdFormFill,
-} from "../controllers/FormatSection/list";
-import { insertActFormSection } from "../controllers/FormatSection/insert";
-import { deleteFormSection } from "../controllers/FormatSection/delete";
-import { updateFormSection } from "../controllers/FormatSection/update";
+} from "../controllers/SurveySection/list";
+import { insertActFormSection } from "../controllers/SurveySection/insert";
+import { deleteFormSection } from "../controllers/SurveySection/delete";
+import { updateFormSection } from "../controllers/SurveySection/update";
 
 const formsection: Router = Router();
 formsection.post("/", insertActFormSection);

@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { ResponseFormSection } from "./list";
-import FormatSectionDao from "../../service/FormatSectionDao";
+import FormatSectionDao from "../../service/SurveySectionDao";
 
 export function deleteFormSection(req: Request, res: Response, next) {
   const id = req.params.id;
