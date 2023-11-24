@@ -29,27 +29,27 @@ export class Query {
     static UPDATE_PROFILE: string = 'UPDATE role	SET name_role=$1 WHERE id_role=$2;';
 
     // Querys for act_format
-    static SELECT_FORMATS: string = 'SELECT * FROM act_format ORDER BY id_format DESC';
+    static SELECT_FORMATS: string = 'SELECT * FROM act_format ORDER BY id_survey DESC';
     static SELECT_FORMAT_BY_NAME: string = 'SELECT * FROM act_format WHERE name_format = $1 AND cod_format = $2';
-    static SELECT_FORMAT_BY_ID: string = 'SELECT * FROM act_format where id_format = $1';
-    static SELECT_FORMAT_BY_ID_RF: string = 'SELECT * FROM act_format f INNER JOIN ar_register_format rf ON f.id_format = rf.id_format where f.id_format = $1';
+    static SELECT_FORMAT_BY_ID: string = 'SELECT * FROM act_format where id_survey = $1';
+    static SELECT_FORMAT_BY_ID_RF: string = 'SELECT * FROM act_format f INNER JOIN ar_register_format rf ON f.id_survey = rf.id_survey where f.id_survey = $1';
     static INSERT_FORMAT: string = 'INSERT INTO act_format (id_user, name_format, desc_format, type_format, cod_format, issue_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
-    static DELETE_FORMAT: string = 'DELETE FROM act_format WHERE id_format = $1 ';
-    static UPDATE_FORMAT: string = 'UPDATE act_format SET id_user=$1, name_format=$2, desc_format=$3, type_format=$4, cod_format=$5, issue_date=$6 WHERE id_format=$7;';
+    static DELETE_FORMAT: string = 'DELETE FROM act_format WHERE id_survey = $1 ';
+    static UPDATE_FORMAT: string = 'UPDATE act_format SET id_user=$1, name_format=$2, desc_format=$3, type_format=$4, cod_format=$5, issue_date=$6 WHERE id_survey=$7;';
 
     // Querys for work_area
-    static SELECT_WORKPLACES: string = 'SELECT * FROM work_area ORDER BY id_area DESC';
-    static SELECT_WORKPLACES_BY_ID_COMP: string = 'SELECT * FROM work_area where id_comp = $1 ORDER BY id_area DESC';
+    static SELECT_WORKPLACES: string = 'SELECT * FROM work_area ORDER BY id_work_area DESC';
+    static SELECT_WORKPLACES_BY_ID_COMP: string = 'SELECT * FROM work_area where id_comp = $1 ORDER BY id_work_area DESC';
     static SELECT_WORKPLACE_BY_NAME: string = 'SELECT * FROM work_area where area_name = $1 ';
-    static INSERT_WORKPLACE: string = 'INSERT INTO work_area (id_comp, area_name, address_workplace, phone_workplace, fixed, risk_level_workplace) VALUES ($1, $2, $3, $4, $5, $6)';
-    static DELETE_WORKPLACE: string = 'DELETE FROM work_area WHERE id_area = $1 ';
-    static UPDATE_WORKPLACE: string = 'UPDATE work_area SET id_comp=$1, area_name=$2, address_workplace=$3, phone_workplace=$4, fixed=$5, risk_level_workplace=$6 WHERE id_area=$7;';
+    static INSERT_WORKPLACE: string = 'INSERT INTO work_area (id_comp, area_name) VALUES ($1, $2)';
+    static DELETE_WORKPLACE: string = 'DELETE FROM work_area WHERE id_work_area = $1 ';
+    static UPDATE_WORKPLACE: string = 'UPDATE work_area SET id_comp=$1, area_name=$2 WHERE id_work_area=$3;';
 
     // Querys for act_section
     static SELECT_SECTIONS: string = 'SELECT * FROM act_section ORDER BY id_sec DESC';
     static SELECT_SECTIONS_BY_NAME: string = 'SELECT * FROM act_section where name_sec = $1';
     static SELECT_SECTION_BY_ID: string = 'SELECT * FROM act_section where id_sec = $1';
-    static SELECT_SECTIONS_NOT_IN_FORM: string = 'SELECT * FROM act_section WHERE id_sec NOT IN (SELECT id_sec FROM act_format_section WHERE id_format = $1)';
+    static SELECT_SECTIONS_NOT_IN_FORM: string = 'SELECT * FROM act_section WHERE id_sec NOT IN (SELECT id_sec FROM act_format_section WHERE id_survey = $1)';
     static INSERT_SECTION: string = 'INSERT INTO act_section (name_sec, desc_sec, type_sec, table_name, cycle) VALUES ($1, $2, $3, $4, $5) RETURNING *';
     static DELETE_SECTION: string = 'DELETE FROM act_section WHERE id_sec = $1 ';
     static UPDATE_SECTION: string = 'UPDATE act_section SET name_sec=$1, desc_sec=$2, type_sec=$3, table_name=$4, cycle=$6 WHERE id_sec=$5;';
@@ -79,8 +79,8 @@ export class Query {
     static SELECT_QUESTION_BY_ORDER_QUEST: string = 'SELECT * FROM Question where id_sec = $1 AND order_ques = $2';
     static SELECT_QUESTION_BY_ID: string = 'SELECT * FROM Question as aq INNER JOIN act_section as asn ON (aq.id_sec = asn.id_sec) where id_ques = $1';
     static SELECT_QUESTIONS_BY_ID_SEC: string = 'SELECT * FROM Question where id_sec = $1 ORDER BY id_ques ASC';
-    static SELECT_QUESTIONS_BY_ID_SEC_FILL: string = 'SELECT * FROM Question WHERE id_sec = $1 AND id_ques IN (SELECT id_ques FROM act_version_ques WHERE id_version = $2) ORDER BY id_ques ASC';
-    static SELECT_QUESTIONS_BY_ORDER_QUES: string = 'SELECT * FROM Question WHERE id_sec = $1 AND id_ques IN (SELECT id_ques FROM act_version_ques WHERE id_version = $2) ORDER BY order_ques ASC';
+    static SELECT_QUESTIONS_BY_ID_SEC_FILL: string = 'SELECT * FROM Question WHERE id_sec = $1 AND id_ques IN (SELECT id_ques FROM act_version_ques WHERE id_sv = $2) ORDER BY id_ques ASC';
+    static SELECT_QUESTIONS_BY_ORDER_QUES: string = 'SELECT * FROM Question WHERE id_sec = $1 AND id_ques IN (SELECT id_ques FROM act_version_ques WHERE id_sv = $2) ORDER BY order_ques ASC';
     static SELECT_QUESTIONS_BY_ID_SEC_NOT_IN: string = 'SELECT * FROM Question where id_sec = $1 AND type_ques NOT IN ($2, $3, $4, $5)';
     static INSERT_QUESTION: string = 'INSERT INTO Question (id_sec, id_opt, name_ques, desc_ques, type_ques, info_ques, mandatory_ques, item_value, order_ques) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *';
     static DELETE_QUESTION: string = 'DELETE FROM Question WHERE id_ques = $1 ';
@@ -105,9 +105,9 @@ export class Query {
     // Querys for ar_register_format
     static SELECT_REG_FORMATS: string = 'SELECT * FROM ar_register_format ORDER BY id_rf DESC';
     static SELECT_REG_FORMAT_BY_ID_WPLACE: string = 'SELECT * FROM ar_register_format where id_area = $1';
-    static INSERT_REG_FORMAT: string = 'INSERT INTO ar_register_format (id_area, id_format, id_user, id_comp, id_version, init_date_rf, fin_date_rf) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
+    static INSERT_REG_FORMAT: string = 'INSERT INTO ar_register_format (id_area, id_survey, id_user, id_comp, id_version, init_date_rf, fin_date_rf) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
     static DELETE_REG_FORMAT: string = 'DELETE FROM ar_register_format WHERE id_rf = $1 ';
-    static UPDATE_REG_FORMAT: string = 'UPDATE ar_register_format SET id_area=$1, id_format=$2, id_user=$3, id_comp=$4, init_date_rf=$5, fin_date_rf=$6 WHERE id_rf=$7;';
+    static UPDATE_REG_FORMAT: string = 'UPDATE ar_register_format SET id_area=$1, id_survey=$2, id_user=$3, id_comp=$4, init_date_rf=$5, fin_date_rf=$6 WHERE id_rf=$7;';
     static SELECT_REPORTS_BY_CFVI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.INIT_DATE_RF BETWEEN $4 AND $5';
     static SELECT_REPORTS_BY_CFVE: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.FIN_DATE_RF BETWEEN $4 AND $5';
     static SELECT_REPORTS_BY_CFVUI: string = 'SELECT arf.*, ac.name_comp, au.name_user, au.lastname_user, aw.area_name FROM ar_register_format arf INNER JOIN company_user au ON (arf.id_user = au.id_user) INNER JOIN company ac ON (arf.id_comp = ac.id_comp) LEFT JOIN work_area aw ON (arf.id_area = aw.id_area) WHERE arf.ID_COMP = $1 AND arf.ID_FORMAT = $2 AND arf.ID_VERSION = $3 AND arf.ID_USER = $4 AND arf.INIT_DATE_RF BETWEEN $5 AND $6';
@@ -124,25 +124,25 @@ export class Query {
     static DELETE_PERMISSION: string = 'DELETE FROM permission WHERE id_permis = $1 ';
     static UPDATE_PERMISSION: string = 'UPDATE permission SET name_permis=$1, des_permis=$2 WHERE id_permis=$3;';
 
-    // Querys for acts_company_format
-    static SELECT_COMP_FORMATS: string = 'SELECT * FROM acts_company_format ORDER BY id_cf DESC';
-    static SELECT_COMP_FORMAT_BY_ID_COMP: string = 'SELECT * FROM acts_company_format as acf INNER JOIN act_format as af ON (acf.id_format = af.id_format) where id_comp = $1 and af.type_format != $2';
-    static SELECT_COMP_FORMAT_BY_ID_COMP_BIO: string = 'SELECT * FROM acts_company_format as acf INNER JOIN act_format as af ON (acf.id_format = af.id_format) where id_comp = $1 and af.type_format = $2';
-    static SELECT_COMP_FORMAT_BY_ID_FORM: string = 'SELECT * FROM acts_company_format where id_format = $1';
-    static SELECT_COMP_FORMAT_BY_ID: string = 'SELECT * FROM acts_company_format WHERE id_cf = $1 ';
-    static INSERT_COMP_FORMAT: string = 'INSERT INTO acts_company_format (id_comp, id_format, state_comp_for) VALUES ($1, $2, $3)';
-    static DELETE_COMP_FORMAT: string = 'DELETE FROM acts_company_format WHERE id_cf = $1 ';
-    static DELETE_COMP_FORMAT_BY_ID_FORM: string = 'DELETE FROM acts_company_format WHERE id_format = $1 ';
-    static UPDATE_COMP_FORMAT: string = 'UPDATE acts_company_format SET id_comp=$1, id_format=$2, state_comp_for=$3 WHERE id_cf=$4;';
+    // Querys for survey_assignment
+    static SELECT_COMP_FORMATS: string = 'SELECT * FROM survey_assignment ORDER BY id_sat DESC';
+    static SELECT_COMP_FORMAT_BY_ID_COMP: string = 'SELECT * FROM survey_assignment as acf INNER JOIN act_format as af ON (acf.id_survey = af.id_survey) where id_comp = $1 and af.type_format != $2';
+    static SELECT_COMP_FORMAT_BY_ID_COMP_BIO: string = 'SELECT * FROM survey_assignment as acf INNER JOIN act_format as af ON (acf.id_survey = af.id_survey) where id_comp = $1 and af.type_format = $2';
+    static SELECT_COMP_FORMAT_BY_ID_FORM: string = 'SELECT * FROM survey_assignment where id_survey = $1';
+    static SELECT_COMP_FORMAT_BY_ID: string = 'SELECT * FROM survey_assignment WHERE id_sat = $1 ';
+    static INSERT_COMP_FORMAT: string = 'INSERT INTO survey_assignment (id_comp, id_survey, state_comp_sur) VALUES ($1, $2, $3)';
+    static DELETE_COMP_FORMAT: string = 'DELETE FROM survey_assignment WHERE id_sat = $1 ';
+    static DELETE_COMP_FORMAT_BY_ID_FORM: string = 'DELETE FROM survey_assignment WHERE id_survey = $1 ';
+    static UPDATE_COMP_FORMAT: string = 'UPDATE survey_assignment SET id_comp=$1, id_survey=$2, state_comp_sur=$3 WHERE id_sat=$4;';
 
     // Querys for act_format_section
     static SELECT_FORM_SECTIONS: string = 'SELECT * FROM act_format_section ORDER BY id_fs DESC';
-    static SELECT_FORM_SECTIONS_BY_ID_FORM: string = 'SELECT afsn.*, asn.* FROM act_format_section as afsn INNER JOIN act_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn. id_format = $1 ORDER BY afsn.order_fs ASC';
-    static SELECT_FORM_SECTIONS_BY_ID_FORM_FILL: string = 'SELECT afsn.*, asn.* FROM act_format_section as afsn INNER JOIN act_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn.id_format = $1 AND afsn.state_fs = true AND afsn.id_sec IN (SELECT id_sec FROM act_version_section WHERE id_version = $2) ORDER BY afsn.order_fs ASC';
-    static SELECT_FORM_SECTIONS_BY_FORM_ORDER: string = 'SELECT * FROM act_format_section WHERE id_format = $1 AND order_fs = $2';
-    static INSERT_FORM_SECTION: string = 'INSERT INTO act_format_section (id_sec, id_format, state_fs, order_fs) VALUES ($1, $2, $3, $4)';
+    static SELECT_FORM_SECTIONS_BY_ID_FORM: string = 'SELECT afsn.*, asn.* FROM act_format_section as afsn INNER JOIN act_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn. id_survey = $1 ORDER BY afsn.order_fs ASC';
+    static SELECT_FORM_SECTIONS_BY_ID_FORM_FILL: string = 'SELECT afsn.*, asn.* FROM act_format_section as afsn INNER JOIN act_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn.id_survey = $1 AND afsn.state_fs = true AND afsn.id_sec IN (SELECT id_sec FROM act_version_section WHERE id_sv = $2) ORDER BY afsn.order_fs ASC';
+    static SELECT_FORM_SECTIONS_BY_FORM_ORDER: string = 'SELECT * FROM act_format_section WHERE id_survey = $1 AND order_fs = $2';
+    static INSERT_FORM_SECTION: string = 'INSERT INTO act_format_section (id_sec, id_survey, state_fs, order_fs) VALUES ($1, $2, $3, $4)';
     static DELETE_FORM_SECTION: string = 'DELETE FROM act_format_section WHERE id_fs = $1 ';
-    static UPDATE_FORM_SECTION: string = 'UPDATE act_format_section SET id_sec=$1, id_format=$2, state_fs=$3, order_fs=$4 WHERE id_fs=$5;';
+    static UPDATE_FORM_SECTION: string = 'UPDATE act_format_section SET id_sec=$1, id_survey=$2, state_fs=$3, order_fs=$4 WHERE id_fs=$5;';
 
     // Querys for permis_role
     static SELECT_PERMISSIONS_ROL: string = 'SELECT * FROM permis_role ORDER BY id_permis_role DESC';
@@ -153,31 +153,31 @@ export class Query {
     static DELETE_PERMISSION_ROL_BY_ID_PROF: string = 'DELETE FROM permis_role WHERE id_role = $1';
     static UPDATE_PERMISSION_ROL: string = 'UPDATE permis_role SET id_role=$1, id_permis=$2 WHERE id_permis_role=$3;';
 
-    // Querys for act_version
-    static SELECT_VERSIONS_BY_ID_FORM: string = 'SELECT av.*, af.* FROM act_version as av INNER JOIN act_format af ON (av.id_format = af.id_format) WHERE av.id_format = $1 ORDER BY av.date_created DESC';
-    static SELECT_VERSION_BY_ID_FORM_COD_VER: string = 'SELECT * FROM act_version WHERE id_format = $1 AND cod_version = $2 AND version = $3'
-    static SELECT_VERSION_BY_ID_FORM_COD_VER_WHEN_UPDATE: string = 'SELECT * FROM act_version WHERE id_format = $1 AND cod_version = $2 AND version = $3 and id_version <> $4'
-    static SELECT_VERSION_BY_ID: string = 'SELECT * FROM act_version WHERE id_version = $1'
-    static INSERT_VERSION: string = 'INSERT INTO act_version (id_format, date_created, cod_version, state_ver, version) VALUES ($1, $2, $3, $4, $5)';
-    static DELETE_VERSION: string = 'DELETE FROM act_version WHERE id_version = $1 ';
-    static UPDATE_VERSION: string = 'UPDATE act_version SET id_format=$1, date_created=$2, cod_version=$3, state_ver=$4, version=$5 WHERE id_version=$6;';
+    // Querys for survey_version
+    static SELECT_VERSIONS_BY_ID_FORM: string = 'SELECT av.*, af.* FROM survey_version as av INNER JOIN act_format af ON (av.id_survey = af.id_survey) WHERE av.id_survey = $1 ORDER BY av.creation_date DESC';
+    static SELECT_VERSION_BY_ID_FORM_COD_VER: string = 'SELECT * FROM survey_version WHERE id_survey = $1 AND cod_sv = $2 AND version = $3'
+    static SELECT_VERSION_BY_ID_FORM_COD_VER_WHEN_UPDATE: string = 'SELECT * FROM survey_version WHERE id_survey = $1 AND cod_sv = $2 AND version = $3 and id_sv <> $4'
+    static SELECT_VERSION_BY_ID: string = 'SELECT * FROM survey_version WHERE id_sv = $1'
+    static INSERT_VERSION: string = 'INSERT INTO survey_version (id_survey, creation_date, cod_sv, state_sv, version) VALUES ($1, $2, $3, $4, $5)';
+    static DELETE_VERSION: string = 'DELETE FROM survey_version WHERE id_sv = $1 ';
+    static UPDATE_VERSION: string = 'UPDATE survey_version SET id_survey=$1, creation_date=$2, cod_sv=$3, state_sv=$4, version=$5 WHERE id_sv=$6;';
 
     // Querys for act_version_section
-    static SELECT_VER_SECTIONS_BY_ID_VER: string = 'SELECT * FROM act_version_section WHERE id_version = $1 ORDER BY id_ver_sec ASC';
-    static SELECT_VER_SECTIONS_INFO_BY_ID_VER: string = 'SELECT * FROM act_version_section vs INNER JOIN act_section sec ON sec.id_sec = vs.id_sec INNER JOIN act_format_section fs ON vs.id_sec = fs.id_sec WHERE vs.id_version = $1 ORDER BY fs.order_fs ASC';
-    // static SELECT_VER_SECTIONS_INFO_BY_ID_VER: string = 'SELECT * FROM act_version_section vs INNER JOIN act_section sec ON sec.id_sec = vs.id_sec INNER JOIN act_format_section fs ON vs.id_sec = fs.id_sec WHERE vs.id_version = $1 AND fs.state_fs = true ORDER BY fs.order_fs ASC';
-    // static SELECT_SECTIONS_NO_VER: string = 'select * from act_section se where id_sec not in (SELECT vs.id_Sec FROM act_version_section vs WHERE vs.id_version = $1)';
-    static SELECT_SECTIONS_NO_VER: string = 'SELECT * FROM act_section se WHERE id_sec NOT IN (SELECT vs.id_Sec FROM act_version_section vs WHERE vs.id_version = $1) AND id_sec IN (SELECT afs.id_sec FROM act_format_section as afs INNER JOIN act_version as av ON (afs.id_format = av.id_format) WHERE afs.id_format = $2)';
-    static INSERT_VER_SECTION: string = 'INSERT INTO act_version_section (id_version, id_sec) VALUES ($1, $2)';
+    static SELECT_VER_SECTIONS_BY_ID_VER: string = 'SELECT * FROM act_version_section WHERE id_sv = $1 ORDER BY id_ver_sec ASC';
+    static SELECT_VER_SECTIONS_INFO_BY_ID_VER: string = 'SELECT * FROM act_version_section vs INNER JOIN act_section sec ON sec.id_sec = vs.id_sec INNER JOIN act_format_section fs ON vs.id_sec = fs.id_sec WHERE vs.id_sv = $1 ORDER BY fs.order_fs ASC';
+    // static SELECT_VER_SECTIONS_INFO_BY_ID_VER: string = 'SELECT * FROM act_version_section vs INNER JOIN act_section sec ON sec.id_sec = vs.id_sec INNER JOIN act_format_section fs ON vs.id_sec = fs.id_sec WHERE vs.id_sv = $1 AND fs.state_fs = true ORDER BY fs.order_fs ASC';
+    // static SELECT_SECTIONS_NO_VER: string = 'select * from act_section se where id_sec not in (SELECT vs.id_Sec FROM act_version_section vs WHERE vs.id_sv = $1)';
+    static SELECT_SECTIONS_NO_VER: string = 'SELECT * FROM act_section se WHERE id_sec NOT IN (SELECT vs.id_Sec FROM act_version_section vs WHERE vs.id_sv = $1) AND id_sec IN (SELECT afs.id_sec FROM act_format_section as afs INNER JOIN survey_version as av ON (afs.id_survey = av.id_survey) WHERE afs.id_survey = $2)';
+    static INSERT_VER_SECTION: string = 'INSERT INTO act_version_section (id_sv, id_sec) VALUES ($1, $2)';
     static DELETE_VER_SECTION: string = 'DELETE FROM act_version_section WHERE id_ver_sec = $1';
 
     // Querys for act_version_section
-    static SELECT_VER_QUESTIONS_BY_ID_VER: string = 'SELECT * FROM act_version_ques WHERE id_version = $1 ORDER BY id_ver_sec ASC';
-    static INSERT_VER_QUESTION: string = 'INSERT INTO act_version_ques (id_version, id_ques) VALUES ($1, $2)';
+    static SELECT_VER_QUESTIONS_BY_ID_VER: string = 'SELECT * FROM act_version_ques WHERE id_sv = $1 ORDER BY id_ver_sec ASC';
+    static INSERT_VER_QUESTION: string = 'INSERT INTO act_version_ques (id_sv, id_ques) VALUES ($1, $2)';
     static DELETE_VER_QUESTION: string = 'DELETE FROM act_version_ques WHERE id_ver_ques = $1';
-    static SELECT_VER_QUESTION_INFO_BY_ID_VER: string = 'select * from Question que inner join act_version_ques vq ON vq.id_ques = que.id_ques inner join act_section sec ON sec.id_sec = que.id_sec where vq.id_version = $1 order by que.name_ques ASC';
-    // static SELECT_VER_QUESTION_INFO_BY_ID_VER: string = 'SELECT * from Question que INNER JOIN act_version_ques vq ON vq.id_ques = que.id_ques INNER JOIN act_section sec ON sec.id_sec = que.id_sec INNER JOIN act_format_section fs ON sec.id_sec = fs.id_sec WHERE vq.id_version = $1 AND fs.state_fs = true ORDER BY que.order_ques ASC';
-    static SELECT_QUESTIONS_NO_VER: string = 'select * from Question que where id_sec = $1 and id_ques not in (SELECT vs.id_ques FROM act_version_ques vs WHERE vs.id_version = $2)';
+    static SELECT_VER_QUESTION_INFO_BY_ID_VER: string = 'select * from Question que inner join act_version_ques vq ON vq.id_ques = que.id_ques inner join act_section sec ON sec.id_sec = que.id_sec where vq.id_sv = $1 order by que.name_ques ASC';
+    // static SELECT_VER_QUESTION_INFO_BY_ID_VER: string = 'SELECT * from Question que INNER JOIN act_version_ques vq ON vq.id_ques = que.id_ques INNER JOIN act_section sec ON sec.id_sec = que.id_sec INNER JOIN act_format_section fs ON sec.id_sec = fs.id_sec WHERE vq.id_sv = $1 AND fs.state_fs = true ORDER BY que.order_ques ASC';
+    static SELECT_QUESTIONS_NO_VER: string = 'select * from Question que where id_sec = $1 and id_ques not in (SELECT vs.id_ques FROM act_version_ques vs WHERE vs.id_sv = $2)';
 
     // Querys to collaborators table
     static INSERT_COLLABORATOR: string = 'INSERT INTO acs_collaborator (id_comp, identification_col, doc_type_col, name_col, lastname_col, birthday_col, area, position, rh_col, gender_col, special_con_col, other_col, eps, afp, arl, severance_pay, compensation_box) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING *';
@@ -192,11 +192,11 @@ export class Query {
     static SELECT_ALL_HEALTHS_BY_COMP: string = 'SELECT * FROM acs_health_format hf INNER JOIN acs_collaborator ac ON hf.identification_col = ac.identification_col where hf.id_comp = $1';
     static SELECT_BASIC_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN company ac ON rf.id_comp = ac.id_comp INNER JOIN company_user au ON rf.id_user = au.id_user 
     INNER JOIN work_area aw ON rf.id_area = aw.id_area  where rf.id_rf = $1`;
-    static SELECT_SECTION_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN act_version_section vs ON rf.id_version = vs.id_version
-     INNER JOIN act_section ats ON vs.id_sec = ats.id_sec INNER JOIN act_format_section afs ON ats.id_sec = afs.id_sec where rf.id_rf = $1 ORDER BY afs.order_fs ASC`
+    static SELECT_SECTION_BIO_DATA_FOR_REPORT: string = `SELECT * FROM ar_register_format rf INNER JOIN act_version_section vs ON rf.id_version = vs.id_version 
+    INNER JOIN act_section ats ON vs.id_sec = ats.id_sec INNER JOIN act_format_section afs ON ats.id_sec = afs.id_sec where rf.id_rf = $1 ORDER BY afs.order_fs ASC`;
 
     //  INNER JOIN Question aq ON ats.id_sec = aq.id_sec
     //  static SELECT_RESPONSE_QUES: string = `SELECT * FROM $1`
-    // INNER JOIN act_format_section fs ON rf.id_format = fs.id_format
+    // INNER JOIN act_format_section fs ON rf.id_survey = fs.id_survey
     // 
 }
