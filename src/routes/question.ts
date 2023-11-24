@@ -12,6 +12,6 @@ question.get('/', listActQues);
 question.get('/id_ques/:id_ques', actQuestionById);
 question.get('/id_sec/:id_sec', actQuesByIdSec);
 question.get('/id_sec_ni/:id_sec_ni', actQuesByIdSecNotIn);
-question.get('/id_sec/:id_sec/id_version/:id_version', actQuesByIdSecFill);
+question.get('/id_sec/:id_sec/id_sv/:id_sv', actQuesByIdSecFill);
 // question.get('/name/:name', actQuesByName);
 export default question;
