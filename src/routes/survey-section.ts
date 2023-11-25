@@ -14,5 +14,5 @@ formsection.put("/", updateFormSection);
 formsection.delete("/:id", deleteFormSection);
 formsection.get("/", listActFormSections);
 formsection.get("/id_form/:id_form", actFormSectionByIdForm);
-formsection.get("/id_form_f/:id_form_f/id_version/:id_version",actFormSectionByIdFormFill);
+formsection.get("/id_form_f/:id_form_f/id_sv/:id_sv",actFormSectionByIdFormFill);
 export default formsection;
