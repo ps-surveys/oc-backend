@@ -33,7 +33,9 @@ class ActDynamicFormDao {
 
             const rf = await pool.query(Query.INSERT_REG_FORMAT, [id_workplace,
                 id_format, id_user, id_comp, id_ver, data.registerFormat['initDateRf'], data.registerFormat['finDateRf']])
-            id_rf = rf.rows[0]["id_rf"];
+                console.log("rf: ", rf);
+                
+            id_rf = rf.rows[0]["id_sad"];
             
             data.sections.forEach(async (section) => {
                 console.log(section['ques_7'])
@@ -46,7 +48,14 @@ class ActDynamicFormDao {
                 keys = Object.keys(section).join(',')
                 values = Object.values(section).map(item => `'${item}'`).join(',')
 
+                console.log("table_name: ", table_name);
+                console.log("keys: ", keys);
+                console.log("idsec: ", idsec);
+                console.log("id_rf: ", id_rf);
+                console.log("values: ", values);
+                
                 insert_section_table = `INSERT INTO ${table_name} (id_section, id_rf, ${keys}) VALUES ( ${idsec}, ${id_rf}, ${values} )`;
+                console.log("query: ", insert_section_table);
 
                 const res = await pool.query(insert_section_table, null);
             });
