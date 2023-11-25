@@ -16,7 +16,6 @@ class ActSectionDao {
                 obj.descSection = item.desc_sec
                 obj.typeSection = item.type_sec
                 obj.tableName = item.table_name
-                obj.cycle = item.cycle
 
                 return obj
             })
@@ -39,7 +38,6 @@ class ActSectionDao {
                 obj.descSection = item.desc_sec
                 obj.typeSection = item.type_sec
                 obj.tableName = item.table_name
-                obj.cycle = item.cycle
 
                 return obj
             })
@@ -62,8 +60,6 @@ class ActSectionDao {
                 obj.descSection = item.desc_sec
                 obj.typeSection = item.type_sec
                 obj.tableName = item.table_name
-                obj.cycle = item.cycle
-
             })
         } catch (err) {
             console.log(err)
@@ -84,7 +80,6 @@ class ActSectionDao {
                 obj.descSection = item.desc_sec
                 obj.typeSection = item.type_sec
                 obj.tableName = item.table_name
-                obj.cycle = item.cycle
             })
         } catch (err) {
             console.log(err)
@@ -104,7 +99,7 @@ class ActSectionDao {
         // var id_sar: number;
         try {
             const sec = await pool.query(Query.INSERT_SECTION, [section.nameSection,
-            section.descSection, section.typeSection, section.tableName, section.cycle])
+            section.descSection, section.typeSection, section.tableName])
             id_sec = sec.rows[0]["id_sec"];
 
             // const rf = await pool.query(Query.INSERT_REG_FORMAT, [null,
@@ -140,7 +135,7 @@ class ActSectionDao {
         var action = false
         try {
             await pool.query(Query.UPDATE_SECTION, [section.nameSection, section.descSection,
-            section.typeSection, section.tableName, section.idSection, section.cycle])
+            section.typeSection, section.tableName, section.idSection])
             action = true
         } catch (err) {
             action = false
