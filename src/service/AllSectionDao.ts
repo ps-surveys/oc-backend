@@ -101,7 +101,7 @@ class ActSectionDao {
         // var insert_table_section: string;
         var table_name: string;
         var id_sec: number;
-        // var id_rf: number;
+        // var id_sar: number;
         try {
             const sec = await pool.query(Query.INSERT_SECTION, [section.nameSection,
             section.descSection, section.typeSection, section.tableName, section.cycle])
@@ -109,7 +109,7 @@ class ActSectionDao {
 
             // const rf = await pool.query(Query.INSERT_REG_FORMAT, [null,
             //     null, null, null, null, null])
-            // id_rf = rf.rows[0]["id_rf"];
+            // id_sar = rf.rows[0]["id_sar"];
 
             // Query to dynamically generate table
             create_table_sections = "CREATE TABLE ACT_SECTION_" + id_sec + " (ID_ACST SERIAL not null, ID_SECTION INT4 null, ID_RF INT4 null, CREATION_DATE TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP, constraint PK_ACT_SECTION_" + id_sec + " primary key (ID_ACST));";
@@ -121,7 +121,7 @@ class ActSectionDao {
             create_index_regformat = "CREATE INDEX ACT_REGISTER_FORMAT_ACT_SECTION_" + id_sec + "_FK ON ACT_SECTION_" + id_sec + " (ID_RF);";
             await pool.query(create_index_regformat, null);
 
-            // insert_table_section = "INSERT INTO ACT_SECTION_" + id_sec + " (ID_SECTION, ID_RF) VALUES (" + id_sec + ", " + id_rf + ") ";
+            // insert_table_section = "INSERT INTO ACT_SECTION_" + id_sec + " (ID_SECTION, ID_RF) VALUES (" + id_sec + ", " + id_sar + ") ";
             // await pool.query(insert_table_section, null);
 
             table_name = "act_section_" + id_sec;
