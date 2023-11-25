@@ -4,10 +4,10 @@ export class Query {
     static SELECT_USER_BY_EMAIL: string = 'SELECT * FROM company_user where email_user = $1 ';
     static SELECT_USER_BY_ID: string = 'SELECT * FROM company_user where id_user = $1 ';
     static SELECT_USER_BY_ID_COMP: string = 'SELECT * FROM company_user where id_comp = $1 ORDER BY id_user DESC ';
-    static INSERT_USER: string = 'INSERT INTO company_user (id_role, id_comp, ident_user, name_user, lastname_user, email_user, pass_user, rh_user, gender_user, date_birth_user, entailment_date_user) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)';
+    static INSERT_USER: string = 'INSERT INTO company_user (id_role, id_comp, ident_user, name_user, lastname_user, email_user, pass_user, gender_user, date_birth_user, entailment_date_user) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
     static DELETE_USER: string = 'DELETE FROM company_user WHERE id_user = $1 ';
-    static UPDATE_USER: string = 'UPDATE company_user SET id_role= $1, id_comp=$2, ident_user=$3, name_user=$4, lastname_user=$5, email_user=$6, pass_user=$7, rh_user=$8, gender_user=$9, date_birth_user=$10, entailment_date_user=$11 WHERE id_user=$12;';
-    static UPDATE_USER_NCP: string = 'UPDATE company_user SET id_role= $1, id_comp=$2, ident_user=$3, name_user=$4, lastname_user=$5, email_user=$6, rh_user=$7, gender_user=$8, date_birth_user=$9, entailment_date_user=$10 WHERE id_user=$11;';
+    static UPDATE_USER: string = 'UPDATE company_user SET id_role= $1, id_comp=$2, ident_user=$3, name_user=$4, lastname_user=$5, email_user=$6, pass_user=$7, gender_user=$8, date_birth_user=$9, entailment_date_user=$10 WHERE id_user=$11;';
+    static UPDATE_USER_NCP: string = 'UPDATE company_user SET id_role= $1, id_comp=$2, ident_user=$3, name_user=$4, lastname_user=$5, email_user=$6, gender_user=$7, date_birth_user=$8, entailment_date_user=$9 WHERE id_user=$10;';
     // static UPDATE_USER_INFO: string = 'UPDATE company_user SET ident_user=$1, name_user=$2, lastname_user=$3, email_user=$4, rh_user=$5, gender_user=$6, date_birth_user=$7 WHERE id_user=$8;';
     static LOGIN: string = 'SELECT * FROM company_user WHERE email_user = $1 and pass_user = $2 ';
 
