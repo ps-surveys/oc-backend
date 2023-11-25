@@ -137,8 +137,8 @@ export class Query {
 
     // Querys for survey_section
     static SELECT_FORM_SECTIONS: string = 'SELECT * FROM survey_section ORDER BY id_ss DESC';
-    static SELECT_FORM_SECTIONS_BY_ID_FORM: string = 'SELECT afsn.*, asn.* FROM survey_section as afsn INNER JOIN survey_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn. id_survey = $1 ORDER BY afsn.order_ss ASC';
-    static SELECT_FORM_SECTIONS_BY_ID_FORM_FILL: string = 'SELECT afsn.*, asn.* FROM survey_section as afsn INNER JOIN survey_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn.id_survey = $1 AND afsn.state_ss = true AND afsn.id_sec IN (SELECT id_sec FROM act_version_section WHERE id_sv = $2) ORDER BY afsn.order_ss ASC';
+    static SELECT_FORM_SECTIONS_BY_ID_FORM: string = 'SELECT afsn.*, asn.* FROM survey_section as afsn INNER JOIN all_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn. id_survey = $1 ORDER BY afsn.order_ss ASC';
+    static SELECT_FORM_SECTIONS_BY_ID_FORM_FILL: string = 'SELECT afsn.*, asn.* FROM survey_section as afsn INNER JOIN all_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn.id_survey = $1 AND afsn.state_ss = true AND afsn.id_sec IN (SELECT id_sec FROM act_version_section WHERE id_sv = $2) ORDER BY afsn.order_ss ASC';
     static SELECT_FORM_SECTIONS_BY_FORM_ORDER: string = 'SELECT * FROM survey_section WHERE id_survey = $1 AND order_ss = $2';
     static INSERT_FORM_SECTION: string = 'INSERT INTO survey_section (id_sec, id_survey, state_ss, order_ss) VALUES ($1, $2, $3, $4)';
     static DELETE_FORM_SECTION: string = 'DELETE FROM survey_section WHERE id_ss = $1 ';

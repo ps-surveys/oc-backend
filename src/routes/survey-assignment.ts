@@ -13,5 +13,5 @@ compformat.get('/', listActsCompFormats);
 compformat.get('/id_comp/:id_comp', actsCompFormatsByIdComp);
 compformat.get('/biosec/:id_comp', actsCompFormatsByIdCompBio);
 compformat.get('/id_form/:id_form', actsCompFormatsByIdForm);
-compformat.get('/id_cf/:id_cf', actsCompFormatById);
+compformat.get('/id_sat/:id_sat', actsCompFormatById);
 export default compformat;
