@@ -79,8 +79,8 @@ export class Query {
     static SELECT_QUESTION_BY_ORDER_QUEST: string = "SELECT * FROM question where id_sec = $1 AND order_ques = $2";
     static SELECT_QUESTION_BY_ID: string = "SELECT * FROM question as aq INNER JOIN survey_section as asn ON (aq.id_sec = asn.id_sec) where id_ques = $1";
     static SELECT_QUESTIONS_BY_ID_SEC: string = "SELECT * FROM question where id_sec = $1 ORDER BY id_ques ASC";
-    static SELECT_QUESTIONS_BY_ID_SEC_FILL: string = "SELECT * FROM question WHERE id_sec = $1 AND id_ques IN (SELECT id_ques FROM act_version_ques WHERE id_sv = $2) ORDER BY id_ques ASC";
-    static SELECT_QUESTIONS_BY_ORDER_QUES: string = "SELECT * FROM question WHERE id_sec = $1 AND id_ques IN (SELECT id_ques FROM act_version_ques WHERE id_sv = $2) ORDER BY order_ques ASC";
+    static SELECT_QUESTIONS_BY_ID_SEC_FILL: string = "SELECT * FROM question WHERE id_sec = $1 AND id_ques IN (SELECT id_ques FROM version_question WHERE id_sv = $2) ORDER BY id_ques ASC";
+    static SELECT_QUESTIONS_BY_ORDER_QUES: string = "SELECT * FROM question WHERE id_sec = $1 AND id_ques IN (SELECT id_ques FROM version_question WHERE id_sv = $2) ORDER BY order_ques ASC";
     static SELECT_QUESTIONS_BY_ID_SEC_NOT_IN: string = "SELECT * FROM question where id_sec = $1 AND type_ques NOT IN ($2, $3, $4, $5)";
     static INSERT_QUESTION: string = "INSERT INTO question (id_sec, id_opt, name_ques, desc_ques, type_ques, info_ques, mandatory_ques, item_value, order_ques) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *";
     static DELETE_QUESTION: string = "DELETE FROM question WHERE id_ques = $1 ";
@@ -138,7 +138,7 @@ export class Query {
     // Querys for survey_section
     static SELECT_FORM_SECTIONS: string = "SELECT * FROM survey_section ORDER BY id_ss DESC";
     static SELECT_FORM_SECTIONS_BY_ID_FORM: string = "SELECT afsn.*, asn.* FROM survey_section as afsn INNER JOIN all_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn. id_survey = $1 ORDER BY afsn.order_ss ASC";
-    static SELECT_FORM_SECTIONS_BY_ID_FORM_FILL: string = "SELECT afsn.*, asn.* FROM survey_section as afsn INNER JOIN all_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn.id_survey = $1 AND afsn.state_ss = true AND afsn.id_sec IN (SELECT id_sec FROM act_version_section WHERE id_sv = $2) ORDER BY afsn.order_ss ASC";
+    static SELECT_FORM_SECTIONS_BY_ID_FORM_FILL: string = "SELECT afsn.*, asn.* FROM survey_section as afsn INNER JOIN all_section as asn ON (afsn.id_sec = asn.id_sec) WHERE afsn.id_survey = $1 AND afsn.state_ss = true AND afsn.id_sec IN (SELECT id_sec FROM version_section WHERE id_version = $2) ORDER BY afsn.order_ss ASC";
     static SELECT_FORM_SECTIONS_BY_FORM_ORDER: string = "SELECT * FROM survey_section WHERE id_survey = $1 AND order_ss = $2";
     static INSERT_FORM_SECTION: string = "INSERT INTO survey_section (id_sec, id_survey, state_ss, order_ss) VALUES ($1, $2, $3, $4)";
     static DELETE_FORM_SECTION: string = "DELETE FROM survey_section WHERE id_ss = $1 ";
@@ -161,4 +161,21 @@ export class Query {
     static INSERT_VERSION: string = 'INSERT INTO survey_version (id_survey, creation_date, cod_sv, state_sv, version) VALUES ($1, $2, $3, $4, $5)';
     static DELETE_VERSION: string = 'DELETE FROM survey_version WHERE id_sv = $1 ';
     static UPDATE_VERSION: string = 'UPDATE survey_version SET id_survey=$1, creation_date=$2, cod_sv=$3, state_sv=$4, version=$5 WHERE id_sv=$6;';
+
+    // Querys for version_section
+    static SELECT_VER_SECTIONS_BY_ID_VER: string = 'SELECT * FROM version_section WHERE id_version = $1 ORDER BY id_ver_sec ASC';
+    static SELECT_VER_SECTIONS_INFO_BY_ID_VER: string = 'SELECT * FROM version_section vs INNER JOIN all_section sec ON sec.id_sec = vs.id_sec INNER JOIN survey_section fs ON vs.id_sec = fs.id_sec WHERE vs.id_version = $1 ORDER BY fs.order_ss ASC';
+    // static SELECT_VER_SECTIONS_INFO_BY_ID_VER: string = 'SELECT * FROM version_section vs INNER JOIN all_section sec ON sec.id_sec = vs.id_sec INNER JOIN survey_section fs ON vs.id_sec = fs.id_sec WHERE vs.id_version = $1 AND fs.state_fs = true ORDER BY fs.order_ss ASC';
+    // static SELECT_SECTIONS_NO_VER: string = 'select * from all_section se where id_sec not in (SELECT vs.id_Sec FROM version_section vs WHERE vs.id_version = $1)';
+    static SELECT_SECTIONS_NO_VER: string = 'SELECT * FROM all_section se WHERE id_sec NOT IN (SELECT vs.id_sec FROM version_section vs WHERE vs.id_version = $1) AND id_sec IN (SELECT afs.id_sec FROM survey_section as afs INNER JOIN survey_version as av ON (afs.id_survey = av.id_survey) WHERE afs.id_survey = $2)';
+    static INSERT_VER_SECTION: string = 'INSERT INTO version_section (id_version, id_sec) VALUES ($1, $2)';
+    static DELETE_VER_SECTION: string = 'DELETE FROM version_section WHERE id_ver_sec = $1';
+
+    // Querys for version_section
+    static SELECT_VER_QUESTIONS_BY_ID_VER: string = 'SELECT * FROM version_question WHERE id_version = $1 ORDER BY id_ver_sec ASC';
+    static INSERT_VER_QUESTION: string = 'INSERT INTO version_question (id_version, id_ques) VALUES ($1, $2)';
+    static DELETE_VER_QUESTION: string = 'DELETE FROM version_question WHERE id_ver_ques = $1';
+    static SELECT_VER_QUESTION_INFO_BY_ID_VER: string = 'select * from act_ques que inner join version_question vq ON vq.id_ques = que.id_ques inner join all_section sec ON sec.id_sec = que.id_sec where vq.id_version = $1 order by que.name_ques ASC';
+    // static SELECT_VER_QUESTION_INFO_BY_ID_VER: string = 'SELECT * from act_ques que INNER JOIN version_question vq ON vq.id_ques = que.id_ques INNER JOIN all_section sec ON sec.id_sec = que.id_sec INNER JOIN survey_section fs ON sec.id_sec = fs.id_sec WHERE vq.id_version = $1 AND fs.state_fs = true ORDER BY que.order_ques ASC';
+    static SELECT_QUESTIONS_NO_VER: string = 'select * from act_ques que where id_sec = $1 and id_ques not in (SELECT vs.id_ques FROM version_question vs WHERE vs.id_version = $2)';
 }

@@ -105,7 +105,7 @@ class ArRegFormatDao {
         fields = Object.values(params.id_questions).join(',')
         console.log("K: ", fields);
 
-        query = `SELECT asnd.id_acst, asnd.id_section, asnd.id_sar, asnd.creation_date, ${fields}, asn.name_sec FROM act_section_${params.id_sec} asnd INNER JOIN act_section asn ON (asnd.id_section = asn.id_sec) WHERE asnd.id_section = ${params.id_sec} AND asnd.id_sar = ${params.id_sar}`;
+        query = `SELECT asnd.id_acst, asnd.id_section, asnd.id_sar, asnd.creation_date, ${fields}, asn.name_sec FROM act_section_${params.id_sec} asnd INNER JOIN all_section asn ON (asnd.id_section = asn.id_sec) WHERE asnd.id_section = ${params.id_sec} AND asnd.id_sar = ${params.id_sar}`;
         
         try {
             var rsw: any = await pool.query(query)
@@ -127,7 +127,7 @@ class ArRegFormatDao {
         fields = Object.values(params.id_questions).join(',')
         console.log("K: ", fields);
 
-        query = `SELECT asnd.id_acst, asnd.id_section, asnd.id_sar, asnd.creation_date, ${fields}, asn.name_sec FROM act_section_${params.id_sec} asnd INNER JOIN act_section asn ON (asnd.id_section = asn.id_sec) WHERE asnd.id_section = ${params.id_sec} AND asnd.id_sar = ${params.id_sar}`;
+        query = `SELECT asnd.id_acst, asnd.id_section, asnd.id_sar, asnd.creation_date, ${fields}, asn.name_sec FROM act_section_${params.id_sec} asnd INNER JOIN all_section asn ON (asnd.id_section = asn.id_sec) WHERE asnd.id_section = ${params.id_sec} AND asnd.id_sar = ${params.id_sar}`;
         
         try {
             var rsw: any = await pool.query(query)

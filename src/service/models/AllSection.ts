@@ -1,4 +1,4 @@
-export const TYPE_SECTION = "act_section";
+export const TYPE_SECTION = "all_section";
 
 export class ActSection {
   idSection: number;

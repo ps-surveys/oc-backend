@@ -1,4 +1,4 @@
-export const TYPE_VERSION = "act_version";
+export const TYPE_VERSION = "survey_version";
 
 export class SurveyVersion {
     idVersion: number;
