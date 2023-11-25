@@ -6,7 +6,7 @@ class AcsWorkplaceDao {
 
     public async workplaces(): Promise<any> {
         try {
-            var rsw: any = await pool.query(Query.SELECT_WORKPLACES)
+            var rsw: any = await pool.query(Query.SELECT_WORKAREAS)
             const rs = rsw.rows
             var list = []
             list = rs.map((item: any) => {
@@ -29,7 +29,7 @@ class AcsWorkplaceDao {
 
     public async workplaceByName(name: string): Promise<any> {
         try {
-            var rsw: any = await pool.query(Query.SELECT_WORKPLACE_BY_NAME, [name])
+            var rsw: any = await pool.query(Query.SELECT_WORKAREA_BY_NAME, [name])
             const rs = rsw.rows
             var obj: AcsWorkplace = null
             rs.map((item: any) => {
@@ -51,7 +51,7 @@ class AcsWorkplaceDao {
 
     public async workplacesByIdComp(idcomp): Promise<any> {
         try {
-            var rsw: any = await pool.query(Query.SELECT_WORKPLACES_BY_ID_COMP, [idcomp])
+            var rsw: any = await pool.query(Query.SELECT_WORKAREAS_BY_ID_COMP, [idcomp])
             const rs = rsw.rows
             var list = []
             list = rs.map((item: any) => {
@@ -75,7 +75,7 @@ class AcsWorkplaceDao {
     public async insert(wplace: AcsWorkplace): Promise<any> {
         var action = false
         try {
-            await pool.query(Query.INSERT_WORKPLACE, [wplace.idComp, wplace.nameWorkplace])
+            await pool.query(Query.INSERT_WORKAREA, [wplace.idComp, wplace.nameWorkplace])
             action = true
         } catch (err) {
             action = false
@@ -88,7 +88,7 @@ class AcsWorkplaceDao {
     public async update(wplace: AcsWorkplace): Promise<any> {
         var action = false
         try {
-            await pool.query(Query.UPDATE_WORKPLACE, [wplace.idComp, wplace.nameWorkplace, wplace.idWorkplace])
+            await pool.query(Query.UPDATE_WORKAREA, [wplace.idComp, wplace.nameWorkplace, wplace.idWorkplace])
             action = true
         } catch (err) {
             action = false
@@ -101,7 +101,7 @@ class AcsWorkplaceDao {
     public async delete(id: number): Promise<any> {
         var action = false
         try {
-            await pool.query(Query.DELETE_WORKPLACE, [id])
+            await pool.query(Query.DELETE_WORKAREA, [id])
             action = true
         } catch (err) {
             action = false
