@@ -9,7 +9,6 @@ export class AcsUser {
     lastnameUser: string;
     emailUser: string;
     passUser?: string;
-    rhUser: string;
     genderUser: string;
     dateBirthUser: Date;
     entailmentDateUser: Date;

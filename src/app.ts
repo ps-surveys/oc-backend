@@ -1,7 +1,6 @@
 import * as express from "express";
 import * as logger from "morgan";
 import * as bodyParser from "body-parser";
-import * as path from "path";
 import user from "./routes/user";
 import company from "./routes/company";
 import profile from "./routes/profile";
@@ -13,16 +12,15 @@ import optvalue from './routes/option-value';
 import question from './routes/question';
 import condition from './routes/condition';
 import dependency from './routes/dependency';
-// import reg_format from './routes/reg-format';
+import survey_answered from './routes/survey-answered';
 import permission from "./routes/permission";
 import surveyassignment from './routes/survey-assignment';
 import surveysection from "./routes/survey-section";
 import permisrol from "./routes/permis-rol";
-// import dynamicform from './routes/dynamic-form';
+import dynamicform from './routes/dynamic-form';
 import surveyversion from './routes/survey-version';
-// import versec from './routes/ver-section';
-// import verques from './routes/ver-question';
-// import collaborator from './routes/collaborator';
+import versec from './routes/ver-section';
+import verques from './routes/ver-question';
 
 import cookieParser = require("cookie-parser"); // this module doesn't use the ES6 default export yet
 import cors = require("cors");
@@ -57,17 +55,16 @@ app.use('/api/v1/optvalue', optvalue);
 app.use('/api/v1/question', question);
 app.use('/api/v1/condition', condition);
 app.use('/api/v1/dependency', dependency);
-// app.use('/api/v1/regformat', reg_format);
+app.use('/api/v1/surveyanswered', survey_answered);
 app.use("/api/v1/permission", permission);
 app.use('/api/v1/surveyassignment', surveyassignment);
 app.use('/api/v1/surveysection', surveysection);
 app.use("/api/v1/permisrol", permisrol);
-// app.use('/api/v1/dynamicform', dynamicform);
+app.use('/api/v1/dynamicform', dynamicform);
 app.use('/api/v1/surveyversion', surveyversion);
-// app.use('/api/v1/versec', versec);
-// app.use('/api/v1/verques', verques);
-// app.use('/api/v1/collaborator', collaborator);
 app.use('/api/v1/option', option);
+app.use('/api/v1/versec', versec);
+app.use('/api/v1/verques', verques);
 
 app.get(/.*/, function (req, res, next) {
   res.setHeader("Content-Type", "text/html");

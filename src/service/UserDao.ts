@@ -24,7 +24,6 @@ class AcsUserDao {
                 obj.lastnameUser = item.lastname_user
                 obj.emailUser = item.email_user
                 obj.passUser = item.pass_user
-                obj.rhUser = item.rh_user
                 obj.genderUser = item.gender_user
                 obj.dateBirthUser = item.date_birth_user
                 obj.entailmentDateUser = item.entailment_date_user
@@ -52,7 +51,6 @@ class AcsUserDao {
                 obj.lastnameUser = item.lastname_user
                 obj.emailUser = item.email_user
                 obj.passUser = item.pass_user
-                obj.rhUser = item.rh_user
                 obj.genderUser = item.gender_user
                 obj.dateBirthUser = item.date_birth_user
                 obj.entailmentDateUser = item.entailment_date_user
@@ -80,7 +78,6 @@ class AcsUserDao {
                 obj.lastnameUser = item.lastname_user
                 obj.emailUser = item.email_user
                 obj.passUser = item.pass_user
-                obj.rhUser = item.rh_user
                 obj.genderUser = item.gender_user
                 obj.dateBirthUser = item.date_birth_user
                 obj.entailmentDateUser = item.entailment_date_user
@@ -107,7 +104,6 @@ class AcsUserDao {
                 obj.lastnameUser = item.lastname_user
                 obj.emailUser = item.email_user
                 obj.passUser = item.pass_user
-                obj.rhUser = item.rh_user
                 obj.genderUser = item.gender_user
                 obj.dateBirthUser = item.date_birth_user
                 obj.entailmentDateUser = item.entailment_date_user
@@ -134,7 +130,6 @@ class AcsUserDao {
                 obj.lastnameUser = item.lastname_user
                 obj.emailUser = item.email_user
                 obj.passUser = item.pass_user
-                obj.rhUser = item.rh_user
                 obj.genderUser = item.gender_user
                 obj.dateBirthUser = item.date_birth_user
                 obj.entailmentDateUser = item.entailment_date_user
@@ -151,7 +146,7 @@ class AcsUserDao {
         var action = false
         try {
             await pool.query(Query.INSERT_USER, [user.idProf, user.idComp, user.identUser,
-            user.nameUser, user.lastnameUser, user.emailUser, md5(user.passUser), user.rhUser,
+            user.nameUser, user.lastnameUser, user.emailUser, md5(user.passUser),
             user.genderUser, user.dateBirthUser, user.entailmentDateUser])
             action = true
         } catch (err) {
@@ -167,11 +162,11 @@ class AcsUserDao {
         try {
             if (chPass === 1) {
                 await pool.query(Query.UPDATE_USER, [user.idProf, user.idComp, user.identUser,
-                user.nameUser, user.lastnameUser, user.emailUser, md5(user.passUser), user.rhUser,
+                user.nameUser, user.lastnameUser, user.emailUser, md5(user.passUser), 
                 user.genderUser, user.dateBirthUser, user.entailmentDateUser, user.idUser])
             } else {
                 await pool.query(Query.UPDATE_USER_NCP, [user.idProf, user.idComp, user.identUser,
-                user.nameUser, user.lastnameUser, user.emailUser, user.rhUser, user.genderUser,
+                user.nameUser, user.lastnameUser, user.emailUser, user.genderUser,
                 user.dateBirthUser, user.entailmentDateUser, user.idUser])
             }
             action = true
@@ -182,21 +177,6 @@ class AcsUserDao {
         }
         return action
     }
-
-    /* public async updateInfo(user: AcsUser): Promise<any> {
-        var action = false
-        try {
-            await pool.query(Query.UPDATE_USER_NCP, [user.idProf, user.idComp, user.identUser,
-            user.nameUser, user.lastnameUser, user.emailUser, user.rhUser, user.genderUser,
-            user.dateBirthUser, user.entailmentDateUser, user.idUser])
-            action = true
-        } catch (err) {
-            action = false
-            console.log(err)
-            throw err
-        }
-        return action
-    } */
 
     public async delete(id: number): Promise<any> {
         var action = false
