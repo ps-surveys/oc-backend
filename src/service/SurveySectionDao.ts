@@ -48,6 +48,8 @@ class ActFormatSectionDao {
         Query.SELECT_FORM_SECTIONS_BY_ID_FORM_FILL,
         [idform, idversion]
       );
+      console.log("rsw: ", rsw);
+      
       const rs = rsw.rows;
       var list = [];
       list = rs;

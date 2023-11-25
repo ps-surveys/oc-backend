@@ -19,6 +19,8 @@ import surveysection from "./routes/survey-section";
 import permisrol from "./routes/permis-rol";
 import dynamicform from './routes/dynamic-form';
 import surveyversion from './routes/survey-version';
+import versec from './routes/ver-section';
+import verques from './routes/ver-question';
 
 import cookieParser = require("cookie-parser"); // this module doesn't use the ES6 default export yet
 import cors = require("cors");
@@ -61,6 +63,8 @@ app.use("/api/v1/permisrol", permisrol);
 app.use('/api/v1/dynamicform', dynamicform);
 app.use('/api/v1/surveyversion', surveyversion);
 app.use('/api/v1/option', option);
+app.use('/api/v1/versec', versec);
+app.use('/api/v1/verques', verques);
 
 app.get(/.*/, function (req, res, next) {
   res.setHeader("Content-Type", "text/html");
