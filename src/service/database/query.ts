@@ -38,12 +38,12 @@ export class Query {
     static UPDATE_FORMAT: string = 'UPDATE survey SET id_user=$1, name_format=$2, desc_format=$3, type_format=$4, cod_format=$5, issue_date=$6 WHERE id_survey=$7;';
 
     // Querys for work_area
-    static SELECT_WORKPLACES: string = 'SELECT * FROM work_area ORDER BY id_work_area DESC';
-    static SELECT_WORKPLACES_BY_ID_COMP: string = 'SELECT * FROM work_area where id_comp = $1 ORDER BY id_work_area DESC';
-    static SELECT_WORKPLACE_BY_NAME: string = 'SELECT * FROM work_area where area_name = $1 ';
-    static INSERT_WORKPLACE: string = 'INSERT INTO work_area (id_comp, area_name) VALUES ($1, $2)';
-    static DELETE_WORKPLACE: string = 'DELETE FROM work_area WHERE id_work_area = $1 ';
-    static UPDATE_WORKPLACE: string = 'UPDATE work_area SET id_comp=$1, area_name=$2 WHERE id_work_area=$3;';
+    static SELECT_WORKAREAS: string = 'SELECT * FROM work_area ORDER BY id_work_area DESC';
+    static SELECT_WORKAREAS_BY_ID_COMP: string = 'SELECT * FROM work_area where id_comp = $1 ORDER BY id_work_area DESC';
+    static SELECT_WORKAREA_BY_NAME: string = 'SELECT * FROM work_area where area_name = $1 ';
+    static INSERT_WORKAREA: string = 'INSERT INTO work_area (id_comp, area_name) VALUES ($1, $2)';
+    static DELETE_WORKAREA: string = 'DELETE FROM work_area WHERE id_work_area = $1 ';
+    static UPDATE_WORKAREA: string = 'UPDATE work_area SET id_comp=$1, area_name=$2 WHERE id_work_area=$3;';
 
     // Querys for all_section
     static SELECT_SECTIONS: string = 'SELECT * FROM all_section ORDER BY id_sec DESC';
