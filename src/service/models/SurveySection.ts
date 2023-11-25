@@ -1,4 +1,4 @@
-export const TYPE_FORMAT_SECTION = "act_format_section";
+export const TYPE_FORMAT_SECTION = "survey_section";
 
 export class FormatSection {
   idSec: number;

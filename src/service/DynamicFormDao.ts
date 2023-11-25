@@ -4,6 +4,8 @@ import { Query } from './database/query'
 class ActDynamicFormDao {
 
     public async insert(data: any): Promise<any> {
+        console.log("data: ", data);
+        
         var action = false
         var table_name: string;
         var id_format: number;
