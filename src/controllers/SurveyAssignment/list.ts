@@ -45,7 +45,7 @@ export function actsCompFormatsByIdForm(req, res: Response, next) {
 }
 
 export function actsCompFormatById(req, res: Response, next) {
-    actsCompFormatDao.compFormatById(req.params.id_cf)
+    actsCompFormatDao.compFormatById(req.params.id_sat)
         .then(data => {
             res.send(new ResponseCompFormats(true, data, null));
         }, err => {
